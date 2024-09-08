@@ -8,6 +8,12 @@ const routes = [
       import('@/views/docs/StyleGuide.vue'),
   },
   {
+    path: '/:pathMatch(.*)*',
+    name: 'ConnectionError',
+    component: () =>
+      import('@/views/publish/ConnectionError.vue'),
+  },
+  {
     path: '/publish/ClassManagement',
     component: () =>
       import('@/views/publish/ClassManagement.vue'),

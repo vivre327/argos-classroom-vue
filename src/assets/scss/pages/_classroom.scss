@@ -1,3 +1,4 @@
+#app,
 body {
   margin: 0;
   padding: 0;
@@ -28,4 +29,10 @@ header {
   display: flex;
   flex-direction: column;
   background-color: #fff;
+}
+
+.no-data {
+  width: 100%;
+  height: 100%;
+  @include flex-center($direction: column);
 }

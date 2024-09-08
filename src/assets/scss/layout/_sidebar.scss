@@ -6,7 +6,7 @@
   flex-shrink: 0; /* flexbox에서 width 고정 */
   background-color: #E7EDF6;
   position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   transition: transform 0.3s ease, width 0.3s ease;
 
@@ -48,6 +48,10 @@
   /* SNB Form */
   .form-element {
     margin-bottom: 1.5rem;
+  }
+
+  .input_date + .input_date {
+    margin-top: 0.5rem;
   }
   
   /* Tabs */

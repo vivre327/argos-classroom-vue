@@ -92,6 +92,7 @@
   &__content {
     position: relative;
     padding: .75rem 0 .75rem 0;
+    overflow-y: auto;
   }
 
   // 너비가 균등한 플렉서블 탭

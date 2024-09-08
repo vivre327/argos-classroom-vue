@@ -1,17 +1,18 @@
 <template>
   <article class="card-item" :class="{'active': isCardActive}" @click="onCardClick">
     <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
-      <source :src="videoSource" type="video/mp4" />
+      <!-- <source :src="videoSource" type="video/mp4" /> -->
+      <source type="video/mp4" />
     </video>
     <div class="card-controls">
       <div class="card-control flex-end">
-        <button class="button button_icon button_icon-x-small" :class="{'active': isPinActive}" @click="onPinClick">
+        <button class="button button_icon button_icon-x-small" tabindex="0" :class="{'active': isPinActive}" @click="onPinClick">
           <svg class="button__icon" aria-hidden="true">
             <use xlink:href="@/assets/images/icons/symbols.svg#pin_fill"></use>
           </svg>
           <span class="assistive-text">상단고정</span>
         </button>
-        <button class="button button_icon button_icon-x-small" @click="onMoreClick">
+        <button class="button button_icon button_icon-x-small" tabindex="0" @click="onMoreClick">
           <svg class="button__icon" aria-hidden="true">
             <use xlink:href="@/assets/images/icons/symbols.svg#more"></use>
           </svg>
@@ -48,10 +49,10 @@ export default {
       type: String,
       default: '공유중' // default value
     },
-    videoSource: {
-      type: String,
-      required: true
-    },
+    // videoSource: {
+    //   type: String,
+    //   required: true
+    // },
   },
   methods: {
     onCardClick() {
@@ -61,7 +62,6 @@ export default {
     onPinClick(event) {
       event.stopPropagation();
       this.isPinActive = !this.isPinActive;
-      // alert('상단고정 버튼 클릭됨');
     },
     onMoreClick(event) {
       event.stopPropagation();

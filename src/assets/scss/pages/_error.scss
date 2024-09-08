@@ -1,0 +1,21 @@
+.error {  
+  &-page {
+    width: 100vw;
+    height: 100vh;
+    @include flex-center($direction: column);
+    background-color: var(--bg-blue);
+    text-align: center
+  }
+
+  &-title {
+    @include font-heading-03;
+    color: var(--color-text-01);
+  }
+  
+  &-desc {
+    padding-top: 1rem;
+    margin-bottom: 2.5rem;
+    @include font-body-02-m;
+    color: var(--color-text-03);
+  }
+}

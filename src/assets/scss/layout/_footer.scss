@@ -20,3 +20,10 @@
   height: 24px;
   background-color: var(--color-gray-04);
 }
+
+/* 1280px 미만일 때 */
+@media (max-width: 1300px) {
+  .toolbar {
+    gap: 40px;
+  }
+}

@@ -36,7 +36,7 @@
 
   &_large {
     min-width: 180px;
-    @include button-size(0.75rem 1.5rem, 1rem, 0.5rem);
+    @include button-size(0.6875rem 1.5rem, 1rem, 0.5rem);
   }
 
   &_x-large {

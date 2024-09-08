@@ -1,5 +1,5 @@
 <template>
-  <aside class="snb scroll">
+  <aside class="snb scroll" :class="{closed: isSnbClosed}">
     <div class="snb-cont">
       <div class="tabs tabs_flex">
         <ul class="tabs__nav" role="tablist">
@@ -113,9 +113,11 @@
               </span>
             </div>
           </fieldset>
-          <div class="form-element"><label class="form-element__label" for="text-input-id-0">수업 시작 일시</label>
+          <div class="form-element"><label class="form-element__label" for="text-input-id-0">마지막 수업 일시</label>
+          <!-- <div class="form-element"><label class="form-element__label" for="text-input-id-0">수업 시작 일시</label> -->
             <div class="form-element__control">
-              <input type="text" value="2024-09-06 10:03:58" data-input class="input input_date" readonly>
+              <input type="text" value="시작 2024-09-06 10:00:01" data-input class="input input_date" readonly>
+              <input type="text" value="시작 2024-09-06 10:00:01" data-input class="input input_date" readonly>
             </div>
           </div>
           <div class="form-element">
@@ -132,7 +134,13 @@
 
 <script>
 export default {
-  name: 'SideNav'
+  name: 'SideNav',
+  props: {
+    isSnbClosed: {
+      type: Boolean,
+      required: true
+    }
+  }
 }
 </script>
 
