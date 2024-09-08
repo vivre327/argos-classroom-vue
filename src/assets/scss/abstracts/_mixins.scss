@@ -1,0 +1,300 @@
+// 1. 레이아웃 및 Flexbox 믹스인
+
+// Flexbox 설정 믹스인
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// flex-center: 가로(row) 또는 세로(column)로 Flexbox 아이템을 중앙 정렬
+@mixin flex-center($direction: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// flex-space-between: 아이템들이 컨테이너 안에서 양쪽 끝을 기준으로 동일한 간격을 두고 정렬
+@mixin flex-space-between($direction: row) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// flex-start: 아이템들이 컨테이너의 시작점에 정렬
+@mixin flex-start($direction: row) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// flex-end: 아이템들이 컨테이너의 끝점에 정렬
+@mixin flex-end($direction: row) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+// flex-wrap: 아이템들이 컨테이너의 너비를 초과할 경우 다음 줄로 이동하며 래핑
+@mixin flex-wrap($direction: row, $wrap: wrap) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+// 그리드 설정 믹스인
+@mixin grid($columns: 12, $gutter: 16px) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gutter;
+}
+
+// 2. 반응형 디자인 믹스인
+
+// 미디어 쿼리 믹스인
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: 600px) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: 900px) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: 901px) {
+      @content;
+    }
+  }
+}
+
+// 3. 스타일 관련 믹스인
+
+// Border Radius 믹스인
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+// Box Shadow 믹스인
+@mixin box-shadow($offset-x: 0, $offset-y: 2px, $blur-radius: 4px, $color: rgba(0, 0, 0, 0.1)) {
+  box-shadow: $offset-x $offset-y $blur-radius $color;
+}
+
+// 4. Typography 믹스인
+
+// Font Style 믹스인_20240828
+@mixin typography($font-size-rem, $font-weight, $line-height, $letter-spacing) {
+  font-size: $font-size-rem;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+// 20040901 추가
+/* Typography Mixins */
+@mixin font-heading-04 {
+  font-size: var(--font-heading-04-size);
+  font-weight: var(--font-heading-04-weight);
+  line-height: var(--font-heading-04-line-height);
+  letter-spacing: var(--font-heading-04-letter-spacing);
+}
+
+@mixin font-heading-03 {
+  font-size: var(--font-heading-03-size);
+  font-weight: var(--font-heading-03-weight);
+  line-height: var(--font-heading-03-line-height);
+  letter-spacing: var(--font-heading-03-letter-spacing);
+}
+
+@mixin font-heading-02 {
+  font-size: var(--font-heading-02-size);
+  font-weight: var(--font-heading-02-weight);
+  line-height: var(--font-heading-02-line-height);
+  letter-spacing: var(--font-heading-02-letter-spacing);
+}
+
+@mixin font-heading-01 {
+  font-size: var(--font-heading-01-size);
+  font-weight: var(--font-heading-01-weight);
+  line-height: var(--font-heading-01-line-height);
+  letter-spacing: var(--font-heading-01-letter-spacing);
+}
+
+@mixin font-title-02-b {
+  font-size: var(--font-title-02-b-size);
+  font-weight: var(--font-title-02-b-weight);
+  line-height: var(--font-title-02-b-line-height);
+  letter-spacing: var(--font-title-02-b-letter-spacing);
+}
+
+@mixin font-title-02-m {
+  font-size: var(--font-title-02-m-size);
+  font-weight: var(--font-title-02-m-weight);
+  line-height: var(--font-title-02-m-line-height);
+  letter-spacing: var(--font-title-02-m-letter-spacing);
+}
+
+@mixin font-title-01-b {
+  font-size: var(--font-title-01-b-size);
+  font-weight: var(--font-title-01-b-weight);
+  line-height: var(--font-title-01-b-line-height);
+  letter-spacing: var(--font-title-01-b-letter-spacing);
+}
+
+@mixin font-title-01-m {
+  font-size: var(--font-title-01-m-size);
+  font-weight: var(--font-title-01-m-weight);
+  line-height: var(--font-title-01-m-line-height);
+  letter-spacing: var(--font-title-01-m-letter-spacing);
+}
+
+@mixin font-sub-title-01 {
+  font-size: var(--font-sub-title-01-size);
+  font-weight: var(--font-sub-title-01-weight);
+  line-height: var(--font-sub-title-01-line-height);
+  letter-spacing: var(--font-sub-title-01-letter-spacing);
+}
+
+@mixin font-body-02-b {
+  font-size: var(--font-body-02-b-size);
+  font-weight: var(--font-body-02-b-weight);
+  line-height: var(--font-body-02-b-line-height);
+  letter-spacing: var(--font-body-02-b-letter-spacing);
+}
+
+@mixin font-body-02-m {
+  font-size: var(--font-body-02-m-size);
+  font-weight: var(--font-body-02-m-weight);
+  line-height: var(--font-body-02-m-line-height);
+  letter-spacing: var(--font-body-02-m-letter-spacing);
+}
+
+@mixin font-body-01-b {
+  font-size: var(--font-body-01-b-size);
+  font-weight: var(--font-body-01-b-weight);
+  line-height: var(--font-body-01-b-line-height);
+  letter-spacing: var(--font-body-01-b-letter-spacing);
+}
+
+@mixin font-body-01-m {
+  font-size: var(--font-body-01-m-size);
+  font-weight: var(--font-body-01-m-weight);
+  line-height: var(--font-body-01-m-line-height);
+  letter-spacing: var(--font-body-01-m-letter-spacing);
+}
+
+@mixin font-caption-02-b {
+  font-size: var(--font-caption-02-b-size);
+  font-weight: var(--font-caption-02-b-weight);
+  line-height: var(--font-caption-02-b-line-height);
+  letter-spacing: var(--font-caption-02-b-letter-spacing);
+}
+
+@mixin font-caption-02-m {
+  font-size: var(--font-caption-02-m-size);
+  font-weight: var(--font-caption-02-m-weight);
+  line-height: var(--font-caption-02-m-line-height);
+  letter-spacing: var(--font-caption-02-m-letter-spacing);
+}
+
+@mixin font-caption-01-b {
+  font-size: var(--font-caption-01-b-size);
+  font-weight: var(--font-caption-01-b-weight);
+  line-height: var(--font-caption-01-b-line-height);
+  letter-spacing: var(--font-caption-01-b-letter-spacing);
+}
+
+@mixin font-caption-01-m {
+  font-size: var(--font-caption-01-m-size);
+  font-weight: var(--font-caption-01-m-weight);
+  line-height: var(--font-caption-01-m-line-height);
+  letter-spacing: var(--font-caption-01-m-letter-spacing);
+}
+
+@mixin font-label-01-b {
+  font-size: var(--font-label-01-b-size);
+  font-weight: var(--font-label-01-b-weight);
+  line-height: var(--font-label-01-b-line-height);
+  letter-spacing: var(--font-label-01-b-letter-spacing);
+}
+
+@mixin font-label-01-m {
+  font-size: var(--font-label-01-m-size);
+  font-weight: var(--font-label-01-m-weight);
+  line-height: var(--font-label-01-m-line-height);
+  letter-spacing: var(--font-label-01-m-letter-spacing);
+}
+
+
+// Text Truncate 믹스인
+// 기본 단일 라인 트렁케이트 mixin
+@mixin truncate($width) {
+  display: block;
+  max-width: $width;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 여러 줄 텍스트 트렁케이트 mixin
+@mixin text-truncate($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+// 5. Button 및 인터랙티브 요소 믹스인
+
+// Button Style 믹스인
+@mixin button-style($background-color, $border-color, $text-color, $hover-background-color, $hover-border-color, $hover-text-color) {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  color: $text-color;
+  &:hover {
+    background-color: $hover-background-color;
+    border-color: $hover-border-color;
+    color: $hover-text-color;
+    outline: none;
+  }
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #0b5cab;
+  }
+}
+
+// Button Size 믹스인
+@mixin button-size($padding, $font-size, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+// Link Style 믹스인
+@mixin link-style($color: blue, $hover-color: darkblue) {
+  color: $color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+// 6. Accessibility 믹스인
+
+// Focus Style 믹스인
+@mixin focus-style($color: blue) {
+  &:focus {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}

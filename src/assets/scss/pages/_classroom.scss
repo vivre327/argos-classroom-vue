@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+.container {
+  display: flex;
+  flex: 1; /* 남은 공간을 모두 차지 */
+  min-height: calc(100vh - 80px); /* 헤더 높이를 뺀 전체 높이 */
+  overflow: hidden; /* 컨테이너의 오버플로우 방지 */
+}
+
+.main-content {
+  padding: 32px 0 0;
+  overflow-y: auto; /* Y축 스크롤 */
+  overflow-x: hidden;
+  flex: 1; /* 남은 공간을 모두 차지 */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}

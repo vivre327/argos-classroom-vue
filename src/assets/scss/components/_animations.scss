@@ -1,0 +1,9 @@
+
+.refreshButton.animate .button__icon {
+  animation: spin 0.7s linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

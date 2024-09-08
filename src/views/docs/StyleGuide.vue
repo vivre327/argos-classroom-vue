@@ -1,0 +1,2847 @@
+<template>
+  <div class="docs-container">
+    <!-- 사이드바 -->
+    <aside class="docs-sidebar">
+      <h1 class="docs-logo"><i>💠</i>Argos Classroom<br>Design System</h1>
+      <ul>
+        <li v-for="(item, index) in sidebarLinks" :key="index">
+          <a href="#" @click.prevent="activeComponent = item.component" 
+             :class="{ active: activeComponent === item.component }">
+            <span v-if="item.del"><del>{{ item.name }}</del></span>
+            <span v-else>{{ item.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="docs-main">
+
+      <div v-show="activeComponent === 'chat'" class="component-section">
+        <section class="component-header">
+          <h2>Chat</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Chat messages</h3>
+          <p class="docs-desc"> <code class="doc">.chat-txt</code>요소의 CSS속성 
+            <code class="doc">white-space: break-spaces;</code> <code class="doc">white-space: pre-line;</code> 
+            추후 수정하기@ </p>
+            <p class="docs-desc">채팅 길어질 경우 스크롤 추가.,</p>
+          <ul class="docs-list">
+            <li>break-spaces: 여러 개의 연속된 공백을 모두 유지합니다. 텍스트가 너무 길어서 줄을 넘어가야 할 경우, 공백에서도 줄바꿈이 가능합니다.</li>
+            <li>pre-line: 여러 개의 연속된 공백은 한 개의 공백으로 처리, 줄바꿈 문자(\n)는 인식하여 줄을 나눕니다.</li>
+          </ul>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <!-- 채팅목록:s -->
+                <ul class="chat-list">
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]이 들어왔습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound">
+                        <span>Definitely.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound">
+                        <span>In fact, you might recognize one of them.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                  <li class="chat-msg inbound">
+                    <div class="chat-msg">
+                      <span class="chat-name">정사랑</span>
+                      <div class="chat-body">
+                        <p class="chat-txt inbound">
+                          <span>What is it?</span>
+                        </p>
+                        <small class="chat-meta">오전 10:53</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="chat-msg inbound">
+                    <div class="chat-body">
+                      <p class="chat-txt inbound">
+                        <span>Oh! Yes! Teacher.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:54</small>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-marker">여기까지 읽었습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound">
+                        <span>In fact, you might recognize one of them.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                </ul>
+                <!-- 채팅목록:e -->
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;section role=&quot;log&quot; class=&quot;chat&quot;&gt;
+  &lt;ul class=&quot;chat-list&quot;&gt;
+    &lt;li class=&quot;chat-msg log&quot;&gt;
+      ...
+    &lt;/li&gt;
+    &lt;li class=&quot;chat-msg outbound&quot;&gt;
+      ...
+    &lt;/li&gt;
+    &lt;li class=&quot;chat-msg inbound&quot;&gt;
+      ...
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+            </code></pre>
+          </div>
+
+          <h3>Inbound messages</h3>
+          <p class="docs-desc"> <code class="doc">li</code> 태그와 <code class="doc">p</code> 태그에 <code class="doc">.inbound</code> 클래스 추가</p>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg inbound">
+                    <div class="chat-msg">
+                      <span class="chat-name">정사랑</span>
+                      <div class="chat-body">
+                        <p class="chat-txt inbound">
+                          <span>What is it?</span>
+                        </p>
+                        <small class="chat-meta">오전 10:53</small>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="chat-msg inbound">
+                    <div class="chat-body">
+                      <p class="chat-txt inbound">
+                        <span>Oh! Yes! Teacher.</span>
+                      </p>
+                      <small class="chat-meta">오전 10:54</small>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;li class=&quot;chat-msg inbound&quot;&gt;
+  &lt;div class=&quot;chat-msg&quot;&gt;
+    &lt;span class=&quot;chat-name&quot;&gt;정사랑&lt;/span&gt;
+    &lt;div class=&quot;chat-body&quot;&gt;
+      &lt;p class=&quot;chat-txt inbound&quot;&gt;
+        &lt;span&gt;What is it?&lt;/span&gt;
+      &lt;/p&gt;
+      &lt;small class=&quot;chat-meta&quot;&gt;오전 10:53&lt;/small&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+&lt;li class=&quot;chat-msg inbound&quot;&gt;
+  &lt;div class=&quot;chat-body&quot;&gt;
+    &lt;p class=&quot;chat-txt inbound&quot;&gt;
+      &lt;span&gt;Oh! Yes! Teacher.&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;small class=&quot;chat-meta&quot;&gt;오전 10:54&lt;/small&gt;
+  &lt;/div&gt;
+&lt;/li&gt;          
+            </code></pre>
+          </div>
+
+          <h3>Outbound messages</h3>
+          <p class="docs-desc"> <code class="doc">li</code> 태그와 <code class="doc">p</code> 태그에 <code class="doc">.outbound</code> 클래스 추가</p>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound">
+                        <span>Definitely.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound">
+                        <span>In fact, you might recognize one of them.</span>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;li class=&quot;chat-msg outbound&quot;&gt;
+  &lt;div class=&quot;chat-msg&quot;&gt;
+    &lt;div class=&quot;chat-body&quot;&gt;
+      &lt;p class=&quot;chat-txt outbound&quot;&gt;
+        &lt;span&gt;Definitely.&lt;/span&gt;
+      &lt;/p&gt;
+      &lt;small class=&quot;chat-meta&quot;&gt;오후 1:55&lt;/small&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+&lt;li class=&quot;chat-msg outbound&quot;&gt;
+  &lt;div class=&quot;chat-body&quot;&gt;
+    &lt;p class=&quot;chat-txt outbound&quot;&gt;
+      &lt;span&gt;In fact, you might recognize one of them.&lt;/span&gt;
+    &lt;/p&gt;
+    &lt;small class=&quot;chat-meta&quot;&gt;오후 1:55&lt;/small&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+            </code></pre>
+          </div>
+
+          <h3>File attachment</h3>
+          <h4>FIle</h4>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <div class="chat-txt outbound file">
+                        <div class="file-tit">
+                          <i class="file-icon"></i>
+                          <span>파일이름.pdf</span>
+                        </div>
+                        <div class="file-actions">
+                          <button class="button">열기</button>
+                          <button class="button">폴더열기</button>
+                        </div>
+                      </div>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+
+            </code></pre>
+          </div>
+
+          <h4>Image</h4>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg outbound">
+                    <div class="chat-body">
+                      <p class="chat-txt outbound image">
+                        <a href="" class="file-figure">
+                          <img src="@/assets/images/temp/chat_image_sample.png" alt="">
+                        </a>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                  <li class="chat-msg inbound">
+                    <div class="chat-body">
+                      <p class="chat-txt inbound image">
+                        <a href="" class="file-figure">
+                          <img src="@/assets/images/temp/chat_image_sample.png" alt="">
+                        </a>
+                      </p>
+                      <small class="chat-meta">오후 1:55</small>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+
+            </code></pre>
+          </div>
+
+          <h3>Action log</h3>
+          <p class="docs-desc"> <code class="doc">.log</code> <code class="doc">.chat-log</code> 클래스 추가</p>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]이 들어왔습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]이 나갔습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]이 화면 공유를 시작했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]이 화면 공유를 종료했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 화면 공유를 시작했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 화면 공유를 종료했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 N대 기기 화면을 잠궜습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 [앱 이름] 앱을 실행했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 N대 기기 화면 잠금을 해제했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">선생님이 [url]을 실행했습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">[학생 이름]의 메시지 입력이 제한되었습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">전체 학생의 메시지 입력이 제한되었습니다.</p>
+                    </div>
+                  </li>
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-log">라이선스가 초과되어 [학생 이름]이 접속 실패되었습니다.</p>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;li class=&quot;chat-msg log&quot;&gt;
+  &lt;div class=&quot;chat-body&quot;&gt;
+    &lt;p class=&quot;chat-log&quot;&gt;[학생 이름]이 들어왔습니다.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+            </code></pre>
+          </div>
+
+          <h3>Read Marker</h3>
+          <p class="docs-desc"><code class="doc">.log</code> <code class="doc">.chat-marker</code> 클래스 추가</p>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <ul class="chat-list">
+                  <li class="chat-msg log">
+                    <div class="chat-body">
+                      <p class="chat-marker">여기까지 읽었습니다.</p>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;li class=&quot;chat-msg log&quot;&gt;
+  &lt;div class=&quot;chat-body&quot;&gt;
+    &lt;p class=&quot;chat-marker&quot;&gt;여기까지 읽었습니다.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+            </code></pre>
+          </div>
+
+          <h3>Empty</h3>
+          <div class="component-preview">
+            <div style="width: 320px; height: fit-content;">
+              <section role="log" class="chat">
+                <div class="chat-empty">
+                  <span class="icon-container">
+                    <svg class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+                    </svg>
+                  </span>
+                  <p>학생들과 함께 채팅을<br>시작해 보세요.</p>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;li class=&quot;chat-msg log&quot;&gt;
+  &lt;div class=&quot;chat-body&quot;&gt;
+    &lt;p class=&quot;chat-marker&quot;&gt;여기까지 읽었습니다.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+            </code></pre>
+          </div>
+
+          <h3>Chat started bookend</h3>
+          <div class="component-preview">
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'token'" class="component-section">
+        <section class="component-header">
+          <h2>Design Tokens</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          
+          <!-- Surface Colors -->
+          <h3>Color System</h3>
+          <h4>Surface Colors</h4>
+          <div class="color-group">
+            <div class="color-chip" style="background-color: var(--color-gray-10);" >color-gray-10<br>#141426</div>
+            <div class="color-chip" style="background-color: var(--color-gray-09);" >color-gray-09<br>#1C283E</div>
+            <div class="color-chip" style="background-color: var(--color-gray-08);" >color-gray-08<br>#3D4A62</div>
+            <div class="color-chip" style="background-color: var(--color-gray-07);" >color-gray-07<br>#65728A</div>
+            <div class="color-chip" style="background-color: var(--color-gray-06);" >color-gray-06<br>#808998</div>
+            <div class="color-chip" style="background-color: var(--color-gray-05);" >color-gray-05<br>#AAB0BB</div>
+            <div class="color-chip" style="background-color: var(--color-gray-04);" >color-gray-04<br>#C6CAD1</div>
+            <div class="color-chip" style="background-color: var(--color-gray-03); color: #555;" >color-gray-03<br>#D9DBE0</div>
+            <div class="color-chip" style="background-color: var(--color-gray-02); color: #555;" >color-gray-02<br>#EDF1F1</div>
+            <div class="color-chip" style="background-color: var(--color-gray-01); color: #555;" >color-gray-01<br>#F9FAFA</div>
+          </div>
+      
+          <!-- Primary Colors -->
+          <h4>Primary Colors</h4>
+          <div class="color-group">
+            <div class="color-chip" style="background-color: var(--color-blue-10);" >color-blue-10<br>#0F2D63</div>
+            <div class="color-chip" style="background-color: var(--color-blue-09);" >color-blue-09<br>#143B81</div>
+            <div class="color-chip" style="background-color: var(--color-blue-08);" >color-blue-08<br>#1A4CA7</div>
+            <div class="color-chip" style="background-color: var(--color-blue-07);" >color-blue-07<br>#2161D6</div>
+            <div class="color-chip" style="background-color: var(--color-blue-06);" >color-blue-06<br>#246BEB</div>
+            <div class="color-chip" style="background-color: var(--color-blue-05);" >color-blue-05<br>#5089EF</div>
+            <div class="color-chip" style="background-color: var(--color-blue-04);" >color-blue-04<br>#6C9CF2</div>
+            <div class="color-chip" style="background-color: var(--color-blue-03); color: #555;" >color-blue-03<br>#9ABBF6</div>
+            <div class="color-chip" style="background-color: var(--color-blue-02); color: #555;" >color-blue-02<br>#BBD1F9</div>
+            <div class="color-chip" style="background-color: var(--color-blue-01); color: #555;" >color-blue-01<br>#E9F0FD</div>
+          </div>
+      
+          <!-- Text Colors -->
+          <h4>Text Colors</h4>
+          <div class="color-group">
+            <div class="color-chip" style="background-color: var(--color-text-01); color: #fff;" >color-text-01<br>#141426</div>
+            <div class="color-chip" style="background-color: var(--color-text-02); color: #fff;" >color-text-02<br>#1C283E</div>
+            <div class="color-chip" style="background-color: var(--color-text-03); color: #fff;" >color-text-03<br>#3D4A62</div>
+            <div class="color-chip" style="background-color: var(--color-text-04); color: #fff;" >color-text-04<br>#65728A</div>
+            <div class="color-chip" style="background-color: var(--color-text-05-disabled); color: #fff;" >color-text-05-disabled<br>#808998</div>
+          </div>
+      
+          <!-- Background Colors -->
+          <h4>Background Colors</h4>
+          <div class="color-group">
+            <div class="color-chip" style="background-color: var(--bg-white); color: #333;">bg-white<br>#FFFFFF</div>
+            <div class="color-chip" style="background-color: var(--bg-blue); color: #333;">bg-blue<br>#DDEBFF</div>
+            <div class="color-chip" style="background-color: var(--bg-light-blue); color: #333;">bg-light-blue<br>#E7EDF6</div>
+          </div>
+
+          <!-- System Colors -->
+          <h4>System Colors</h4>
+          <div class="color-group">
+            <div class="color-chip" style="background-color: var(--color-red);">color-red<br>#DA1E28</div>
+            <div class="color-chip" style="background-color: var(--color-badge-red);">color-badge-red<br>#EE0000</div>
+            <div class="color-chip" style="background-color: var(--color-yellow);">color-yellow<br>#FFD400</div>
+          </div>
+
+          <!-- Border Radius -->
+           <h3>Border Radius</h3>
+           <div class="radius-group">
+            <div class="radius-chip radius-1">
+              <span>radius-1</span>
+              <span>0.5rem (8px)</span>
+            </div>
+            <div class="radius-chip radius-2">
+              <span>radius-2</span>
+              <span>0.75rem (12px)</span>
+            </div>
+            <div class="radius-chip radius-3">
+              <span>radius-3</span>
+              <span>1rem (16px)</span>
+            </div>
+            <div class="radius-chip radius-4">
+              <span>radius-4</span>
+              <span>1.25rem (20px)</span>
+            </div>
+            <div class="radius-chip radius-5">
+              <span>radius-5</span>
+              <span>1.5rem (24px)</span>
+            </div>
+            <div class="radius-chip radius-6">
+              <span>radius-6</span>
+              <span>2.5rem (40px)</span>
+            </div>
+            <div class="radius-chip radius-circle">
+              <span>radius-circle</span>
+              <span>100%</span>
+            </div>
+            <div class="radius-chip radius-pill" style="aspect-ratio: 5/1;">
+              <span>radius-pill</span>
+              <span>999px</span>
+            </div>
+          </div>
+
+          <!-- Typography -->
+           <h3>Typography</h3>
+           <h4>Title</h4>
+           <div class="typography-group">
+            <!-- Title Section -->
+            <div class="font-item heading-04">
+              <span>Heading-04</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item heading-03">
+              <span>Heading-03</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item heading-02">
+              <span>Heading-02</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item heading-01">
+              <span>Heading-01</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item title-02-b">
+              <span>Title-02-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item title-02-m">
+              <span>Title-02-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item title-01-b">
+              <span>Title-01-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item title-01-m">
+              <span>Title-01-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item sub-title-01">
+              <span>Sub Title-01</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            
+            <!-- Body Section -->
+            <h4>Body</h4>
+            
+            <div class="font-item body-02-b">
+              <span>Body-02-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item body-02-m">
+              <span>Body-02-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item body-01-b">
+              <span>Body-01-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item body-01-m">
+              <span>Body-01-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item caption-02-b">
+              <span>Caption-02-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item caption-02-m">
+              <span>Caption-02-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item caption-01-b">
+              <span>Caption-01-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item caption-01-m">
+              <span>Caption-01-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item label-01-b">
+              <span>Label-01-B</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+            <div class="font-item label-01-m">
+              <span>Label-01-M</span>
+              <p>다람쥐 헌 쳇바퀴에 타고파</p>
+            </div>
+          </div>
+      
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'badge'" class="component-section">
+        <section class="component-header">
+          <h2>Badges</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Colors</h3>
+          <div class="component-preview">
+            <!-- <span class="badge default">Default Badge</span>
+            <span class="badge darker">Darker Badge</span>
+            <span class="badge lightest">Lightest Badge</span> -->
+            <!-- <span class="badge success">Success Badge</span> -->
+            <span class="badge warning">Warning Badge</span>
+            <span class="badge error">Error Badge</span>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class=&quot;badge warning&quot;&gt;Warning Badge&lt;/span&gt;
+&lt;span class=&quot;badge error&quot;&gt;Error Badge&lt;/span&gt;
+            </code></pre>
+          </div>
+
+          <h3>Count</h3>
+          <div class="component-preview">
+            <span class="badge count">24</span>
+            <span class="badge count">999+</span>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class=&quot;badge count&quot;&gt;24&lt;/span&gt;
+&lt;span class=&quot;badge count&quot;&gt;999+&lt;/span&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'toast'" class="component-section">
+        <section class="component-header">
+          <h2>Toast</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <!-- <p class="docs-desc"><code class="doc">.relative</code> 삭제 후 사용</p> -->
+          <div class="component-preview">
+            <div class="toast_container relative">
+              <div class="toast" role="status">
+                <div class="toast__content"><em>‘아르고스의 과학수업’</em> 수업을 추가 했습니다.</div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;toast_container&quot;&gt;
+  &lt;div class=&quot;toast&quot; role=&quot;status&quot;&gt;
+    &lt;div class=&quot;toast__content&quot;&gt;&lt;em&gt;‘아르고스의 과학수업’&lt;/em&gt; 수업을 추가 했습니다.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;            
+            </code></pre>
+          </div>
+          
+          <h3>Dismissible Toast</h3>
+          <div class="component-preview">
+            <div class="toast_container relative">
+              <div class="toast toast_dismissible" role="status">
+                <div class="toast__content"><em>‘아르고스의 과학수업’</em> 수업을 추가 했습니다.</div>
+                <div class="toast__close">
+                  <button class="button button_icon button_icon-xx-small" title="Close">
+                    <svg class="button__icon" aria-hidden="true">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#close"></use>
+                    </svg>
+                    <span class="assistive-text">Close</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;toast_container&quot;&gt;
+  &lt;div class=&quot;toast toast_dismissible&quot; role=&quot;status&quot;&gt;
+    &lt;div class=&quot;toast__content&quot;&gt;&lt;em&gt;‘아르고스의 과학수업’&lt;/em&gt; 수업을 추가 했습니다.&lt;/div&gt;
+    &lt;div class=&quot;toast__close&quot;&gt;
+      &lt;button class=&quot;button button_icon button_icon-xx-small&quot; title=&quot;Close&quot;&gt;
+        &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#close&quot;&gt;&lt;/use&gt;
+        &lt;/svg&gt;
+        &lt;span class=&quot;assistive-text&quot;&gt;Close&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;            
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'button'" class="component-section">
+        <section class="component-header">
+          <h2>Buttons</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Buttons</h3>
+          <div class="component-preview"><button class="button">Button</button> <button
+              class="button button_primary">Primary Button</button> <button
+              class="button button_secondary">Secondary Button</button> <button
+              class="button button_outline-primary">Outline Primary Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button"&gt;Button&lt;/button&gt;
+&lt;button class="button button_primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="button button_secondary"&gt;Secondary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+          <h3>Links</h3>
+          <div class="component-preview"><a href="#" class="button">Button</a> <a href="#"
+              class="button button_primary">Primary Button</a> <a href="#"
+              class="button button_secondary">Secondary Button</a> <a href="#"
+              class="button button_outline-primary">Outline Primary Button</a> 
+              </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;a href="#" class="button"&gt;Button&lt;/a&gt;
+&lt;a href="#" class="button button_primary"&gt;Primary Button&lt;/a&gt;
+&lt;a href="#" class="button button_secondary"&gt;Secondary Button&lt;/a&gt;
+&lt;a href="#" class="button button_outline-primary"&gt;Outline Primary Button&lt;/a&gt;         
+            </code></pre>
+          </div>
+          <h3>Base</h3>
+          <p class="docs-desc">버튼의 모든 스타일을 제거한 <code class="doc">.button</code> 클래스</p>
+          <ul class="docs-list">
+            <li>버튼의 최소 넓이 180px</li>
+          </ul>
+          <div class="component-preview"><button class="button">Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button"&gt;Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h3>Sizing</h3>
+          <h4>Default</h4>
+          <p class="docs-desc">색상을 Primary로 변경하기 위해 <code class="doc">.button_primary</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_primary">Primary Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary"&gt;Primary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h4>Small</h4>
+          <p class="docs-desc">사이즈를 small로 변경하기 위해 <code class="doc">.button_small</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_primary button_small">Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary"&gt;Primary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h4>Large</h4>
+          <p class="docs-desc">사이즈를 Large로 변경하기 위해 <code class="doc">.button_large</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_primary button_large">Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary button_large"&gt;Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h4>X-Large</h4>
+          <p class="docs-desc">사이즈를 X-Large로 변경하기 위해 <code class="doc">.button_x-large</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_primary button_x-large">Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary button_x-large"&gt;Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h3>Variations</h3>
+          <h4>Primary</h4>
+          <p class="docs-desc">색상을 Primary로 변경하기 위해 <code class="doc">.button_primary</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_primary">Primary Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary"&gt;Primary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+          <h4>Secondary</h4>
+          <p class="docs-desc">색상을 Secondary로 변경하기 위해 <code class="doc">.button_secondary</code> 를 추가한다.</p>
+          <div class="component-preview"><button class="button button_secondary">Secondary Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_secondary"&gt;Secondary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+
+          <h4>Outline</h4>
+          <p class="docs-desc">Outline 으로 변경하기 위해 <code class="doc">.button_outline-primary</code> 또는 <code class="doc">.button_outline-secondary</code> 를 추가한다.</p>
+          <div class="component-preview">
+            <button class="button button_outline-primary">Outline Primary Button</button>
+            <button class="button button_outline-secondary">Outline Secondary Button</button>
+            </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_outline-primary"&gt;Outline Primary Button&lt;/button&gt;
+&lt;button class="button button_outline-primary"&gt;Outline Secondary Button&lt;/button&gt;
+            </code></pre>
+          </div>
+          <h3>With Icons</h3>
+          <h4>Base</h4>
+          <p class="docs-desc">버튼 내부에 아이콘을 배치한다. <code class="doc">.icon_left</code> 또는 <code class="doc">.icon_right</code> 를 사용하여 아이콘을 왼쪽 또는 오른쪽에 배치할 수 있다.</p>
+          <div class="component-preview"><button class="button">Button
+            <svg class="icon icon_right">
+                <use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button"&gt;Primary Button
+  &lt;svg class="icon icon_right"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#arrow_right"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;             
+            </code></pre>
+          </div>
+
+          <h4>Left Icon</h4>
+          <div class="component-preview"><button class="button button_primary"><svg
+                class="icon icon_left">
+                <use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"></use>
+              </svg>Primary Button</button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_primary"&gt;
+  &lt;svg class="icon icon_left"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"&gt;&lt;/use&gt;
+  &lt;/svg&gt;Primary Button
+&lt;/button&gt;
+            </code></pre>
+          </div>
+          <h4>Right Icon</h4>
+          <div class="component-preview"><button class="button button_outline-primary">Primary Button <svg
+                class="icon icon_right">
+                <use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"></use>
+              </svg></button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class="button button_outline-primary"&gt;Outline Primary Button
+  &lt;svg class="icon icon_right"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;             
+            </code></pre>
+          </div>
+
+          <div class="release-notes">
+            <h2 id="2180">0.0.0</h2>
+            <h3 id="added">Added</h3>
+            <ul>
+              <li>클래스 <code>button_icon-large</code> 를 추가</li>
+            </ul>
+            <h3 id="fixed">Fixed</h3>
+            <ul>
+              <li>반응형 사이즈 수정</li>
+            </ul>
+            <h3 id="added-2">Added</h3>
+            <ul>
+              <li>context 수정</li>
+            </ul>
+            <h2 id="2100">0.0.0</h2>
+            <h3 id="changed">Changed</h3>
+            <ul>
+              <li><code>button_icon</code> with change of <code>display: inline-flex</code> to
+                <code>button</code></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'select'" class="component-section">
+        <section class="component-header">
+          <h2>Select</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Select</h3>
+          <h4>Default</h4>
+          <div class="component-preview" style="background-color:#f5f5f5">
+            <div class="form-element">
+              <label class="form-element__label" for="select-01">Select Label</label>
+              <div class="select_container">
+                <select class="select" id="select-01">
+                  <option value="">Select…</option>
+                  <option value="option1">Option One</option>
+                  <option value="option2">Option Two</option>
+                  <option value="option3">Option Three</option>
+                </select>
+                <svg class="icon">
+                  <use xlink:href="@/assets/images/icons/symbols.svg#arrow_down"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; type=&quot;text&quot; class=&quot;input&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+
+          <h3>States</h3>
+          <h4>Disabled</h4>
+          <div class="component-preview">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input
+                Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  disabled class="input input-outline"></div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; disabled type=&quot;text&quot; class=&quot;input input-outline&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;                        
+              </code></pre>
+          </div>
+          <h4>Error</h4>
+          <div class="component-preview">
+            <div class="form-element has-error"><label class="form-element__label"
+                for="text-input-id-0">Input Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  required aria-describedby="error-message-id-0" class="input" aria-invalid="true"></div>
+              <div class="form-element__help" id="error-message-id-0">Enter a value.</div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element has-error&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; required=&quot;&quot; aria-describedby=&quot;error-message-id-0&quot; type=&quot;text&quot; class=&quot;input&quot; aria-invalid=&quot;true&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element__help&quot; id=&quot;error-message-id-0&quot;&gt;Enter a value.&lt;/div&gt;
+&lt;/div&gt;                        
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'globalheader'" class="component-section">
+        <section class="component-header">
+          <h2>Global Header</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+
+          <h3>Console Header</h3>
+          <h4>Default</h4>
+          <div class="component-preview demo-viewport">
+            <header class="global-header_container"><a href="#" class="assistive-text assistive-text_focus">Skip to Navigation</a> 
+                <a href="#" class="assistive-text assistive-text_focus">Skip to Main Content</a>
+              <div class="global-header global-header_console">
+                <div class="global-header__item">
+                  <h1 class="global-header__logo">Argos Classroom</h1>
+                </div>
+                <div class="global-header__item global-header--flex">
+                  <ul class="global-controls">
+                    <li class="global-controls_item">
+                      <div class="form-element">
+                        <label class="blind" for="text-input-id-0">수업 검색</label>
+                        <div class="form-element__control input-has-icon input-has-icon_right">
+                          <input type="text" id="text-input-id-0" placeholder="수업 또는 교사 이름을 검색해주세요." class="input" />
+                          <button class="button button_icon" title="검색">
+                            <svg class="button__icon" aria-hidden="true">
+                              <use xlink:href="@/assets/images/icons/symbols.svg#search"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="global-actions">
+                    <li class="global-actions__item">
+                      <button class="button button_icon" title="CS">
+                        <svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#cs"></use>
+                        </svg>
+                        <span class="assistive-text">도움말</span>
+                      </button>
+                    </li>
+                    <li class="global-actions__item">
+                      <button class="button button_icon" title="My">
+                        <svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#my"></use>
+                        </svg>
+                        <span class="assistive-text">로그아웃</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                 
+              </div>
+            </header>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+
+          <h4>처음진입, 등록된 수업이 없는경우</h4>
+          <div class="component-preview demo-viewport">
+            <header class="global-header_container"><a href="#" class="assistive-text assistive-text_focus">Skip to Navigation</a> 
+                <a href="#" class="assistive-text assistive-text_focus">Skip to Main Content</a>
+              <div class="global-header global-header_console">
+                <div class="global-header__item">
+                  <h1 class="global-header__logo">Argos Classroom</h1>
+                </div>
+                <div class="global-header__item global-header--flex">
+                  <ul class="global-actions">
+                    <li class="global-actions__item">
+                      <button class="button button_icon" title="CS">
+                        <svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#cs"></use>
+                        </svg>
+                        <span class="assistive-text">CS</span>
+                      </button>
+                    </li>
+                    <li class="global-actions__item">
+                      <button class="button button_icon" title="My">
+                        <svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#my"></use>
+                        </svg>
+                        <span class="assistive-text">My</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                 
+              </div>
+            </header>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+
+          <h3>Class Room Header</h3>
+          <h4>수업 시작 전</h4>
+          <div class="component-preview demo-viewport">
+            <header class="global-header_container"><a href="#"
+                class="assistive-text assistive-text_focus">Skip to Navigation</a> <a href="#"
+                class="assistive-text assistive-text_focus">Skip to Main Content</a>
+              <div class="global-header">
+                <div class="global-header__item left">
+                  <ul class="global-actions">
+                    <li class="global-actions__item"><button class="button button_icon"
+                        title="Menu"><svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#menu_off"></use>
+                        </svg> <span class="assistive-text">Menu</span></button></li>
+                  </ul>
+                </div>
+                <div class="global-header__item center">
+                  <ul class="global-actions">
+                    <li class="global-actions__item">
+                      <div class="global__text">Arogos의 수학 수업</div>
+                    </li>
+                    <li class="global-actions__item"><button class="button button_outline-primary">수업코드 :
+                        1234 <svg class="icon icon_x-small icon_right">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#arrow_right"></use>
+                        </svg></button></li>
+                  </ul>
+                </div>
+                <div class="global-header__item right">
+                  <ul class="global-actions">
+                    <li class="global-header__time"></li>
+                    <li class="global-actions__item"><button class="button button_secondary"><svg
+                          class="icon icon_small icon_left">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#export"></use>
+                        </svg>수업 시작</button></li>
+                  </ul>
+                </div>
+              </div>
+            </header>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+
+          <h4>수업 진행 중</h4>
+          <div class="component-preview demo-viewport">
+            <header class="global-header_container"><a href="#"
+                class="assistive-text assistive-text_focus">Skip to Navigation</a> <a href="#"
+                class="assistive-text assistive-text_focus">Skip to Main Content</a>
+              <div class="global-header">
+                <div class="global-header__item left">
+                  <ul class="global-actions">
+                    <li class="global-actions__item"><button class="button button_icon"
+                        title="Menu"><svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#menu_on"></use>
+                        </svg> <span class="assistive-text">Menu</span></button></li>
+                  </ul>
+                </div>
+                <div class="global-header__item center">
+                  <ul class="global-actions">
+                    <li class="global-actions__item">
+                      <div class="global__text">Arogos의 수학 수업</div>
+                    </li>
+                    <li class="global-actions__item"><button class="button button_outline-primary">수업코드 :
+                        1234 <svg class="icon icon_x-small icon_right">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#arrow_right"></use>
+                        </svg></button></li>
+                  </ul>
+                </div>
+                <div class="global-header__item right">
+                  <ul class="global-actions">
+                    <li class="global-header__time"><svg class="icon icon_x-small gray07">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#time"></use>
+                      </svg> <span class="text">00 : 45 : 01</span></li>
+                    <li class="global-actions__item"><button class="button button_secondary"><svg
+                          class="icon icon_small icon_left">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#export"></use>
+                        </svg>수업 종료</button></li>
+                  </ul>
+                </div>
+              </div>
+            </header>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+
+          <h4>종료</h4>
+          <div class="component-preview demo-viewport">
+            <header class="global-header_container"><a href="#"
+                class="assistive-text assistive-text_focus">Skip to Navigation</a> <a href="#"
+                class="assistive-text assistive-text_focus">Skip to Main Content</a>
+              <div class="global-header">
+                <div class="global-header__item left">
+                  <ul class="global-actions">
+                    <li class="global-actions__item"><button class="button button_icon"
+                        title="Menu"><svg class="button__icon" aria-hidden="true">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#menu_on"></use>
+                        </svg> <span class="assistive-text">Menu</span></button></li>
+                  </ul>
+                </div>
+                <div class="global-header__item center">
+                  <ul class="global-actions">
+                    <li class="global-actions__item">
+                      <div class="global__text">Arogos의 수학 수업</div>
+                    </li>
+                    <li class="global-actions__item"><button class="button button_outline-primary">수업코드 :
+                        1234 <svg class="icon icon_x-small icon_right">
+                          <use xlink:href="@/assets/images/icons/symbols.svg#arrow_right"></use>
+                        </svg></button></li>
+                  </ul>
+                </div>
+              </div>
+            </header>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'pageheader'" class="component-section">
+        <section class="component-header">
+          <h2>Page Headers</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Classroom</h3>
+          <div class="component-preview" style="background-color: #E7EDF6;">
+            <div class="page-header">
+              <div class="page-header__row">
+                <div class="page-header__actions">
+                  <div class="page-header__control">
+                    <div class="checkbox">
+                      <input type="checkbox" name="options" id="checkbox-unique-id-1" value="checkbox-unique-id-1"
+                        checked="" />
+                      <label class="checkbox__label" for="checkbox-unique-id-1">
+                        <span class="checkbox_faux"><svg class="icon"><use xlink:href="@/assets/images/icons/symbols.svg#check"></use></svg></span>
+                        <span class="form-element__label">전체선택</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="page-header__meta">
+                    <em class="primary06">1</em>/15
+                  </div>
+                </div>
+                <div class="page-header__controls">
+                  <div class="page-header__control">
+                    <div class="form-element">
+                      <label class="blind" for="text-input-id-0">학생 번호 이름 검색</label>
+                      <div class="form-element__control input-has-icon input-has-icon_right">
+                        <input type="text" id="text-input-id-0" placeholder="학생 번호 이름을 입력하세요." class="input" />
+                        <button class="button button_icon" title="검색 버튼">
+                          <svg class="button__icon" aria-hidden="true">
+                            <use xlink:href="@/assets/images/icons/symbols.svg#search"></use>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="page-header__control">
+                    <button class="button button_outline button_icon button_icon-border" title="Reset Icon">
+                      <svg class="button__icon" aria-hidden="true">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#reset"></use>
+                      </svg>
+                      <span class="assistive-text">Reset</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+
+          <h3>Console</h3>
+          <div class="component-preview" style="background-color: #E7EDF6;">
+            <div class="page-header">
+              <div class="page-header__row">
+                <div class="page-header__meta">title 및 meta 정보</div>
+                <div class="page-header__controls">
+                  <div class="page-header__control">내 수업</div>
+                  <div class="page-header__control">수업 추가 +</div>
+                </div>
+              </div>
+              <div class="page-header__row">
+                <div class="page-header__meta">총6개</div>
+                <div class="page-header__controls">
+                  <div class="page-header__control">버튼</div>
+                  <div class="page-header__control">버튼</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'code'" class="component-section">
+        <section class="component-header">
+          <h2>QR Code</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Default</h3>
+          <div class="component-preview" style="background-color: #E7EDF6;">
+            <div style="width: 480px; padding: 32px;">
+              <div class="code">
+                <img src="@/assets/images/temp/QR_code_sample.png" alt="수업 코드의 QR code" class="code_qr">
+                <p class="body-02-b">or</p>
+                <div class="code_text">
+                  <span>수업 코드</span>
+                  <em>1234</em>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+
+            </code></pre>
+          </div>
+
+          <h3>Color</h3>
+          <h4>Primary</h4>
+          <div class="component-preview">
+            <div style="width: 480px; padding: 32px;">
+              <div class="code code--blue">
+                <img src="@/assets/images/temp/QR_code_sample.png" alt="수업 코드의 QR code" class="code_qr">
+                <p class="body-02-b">or</p>
+                <div class="code_text">
+                  <span>수업 코드</span>
+                  <em>1234</em>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+
+            </code></pre>
+          </div>
+
+          <h3>Sizing</h3>
+          <h4>Small</h4>
+          <div class="component-preview" style="background-color: #E7EDF6;">
+            <div style="width: 320px; padding: 30px;">
+              <div class="code code_small">
+                <img src="@/assets/images/temp/QR_code_sample.png" alt="수업 코드의 QR code" class="code_qr">
+                <p class="body-02-b">or</p>
+                <div class="code_text">
+                  <span>수업 코드</span>
+                  <em>1234</em>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+
+            </code></pre>
+          </div>
+        </section>
+      </div>
+      
+      <div v-show="activeComponent === 'checkbox'" class="component-section">
+        <section class="component-header">
+          <h2>Checkbox</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <div class="component-preview">
+            <div class="form-element">
+              <div class="form-element__control">
+                <div class="checkbox"><input type="checkbox" name="options" id="checkbox-unique-id-3"
+                    value="checkbox-unique-id-3" checked><label class="checkbox__label"
+                    for="checkbox-unique-id-3"><span class="checkbox_faux"><svg class="icon">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#check"></use>
+                      </svg></span> <span class="form-element__label">Checkbox Label</span></label></div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element__control&quot;&gt;
+  &lt;div class=&quot;checkbox&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;options&quot; id=&quot;checkbox-unique-id-3&quot; value=&quot;checkbox-unique-id-3&quot;
+      checked=&quot;&quot; /&gt;
+    &lt;label class=&quot;checkbox__label&quot; for=&quot;checkbox-unique-id-3&quot;&gt;
+      &lt;span class=&quot;checkbox_faux&quot;&gt;&lt;svg class=&quot;icon&quot;&gt;&lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;span class=&quot;form-element__label&quot;&gt;Checkbox Label&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+          <h3>States</h3>
+          <h4>Error (TBD)</h4>
+          <div class="component-preview">
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+              </code></pre>
+          </div>
+          <h4>Disabled (TBD)</h4>
+          <div class="component-preview">
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'input'" class="component-section">
+        <section class="component-header">
+          <h2>Input</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Input</h3>
+          <h4>Default</h4>
+          <div class="component-preview" style="background-color:#f5f5f5">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input
+                Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  class="input"></div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; type=&quot;text&quot; class=&quot;input&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+          <h4>Outline</h4>
+          <div class="component-preview">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input
+                Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  class="input input-outline"></div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; type=&quot;text&quot; class=&quot;input input-outline&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+          <h3>States</h3>
+          <h4>Disabled</h4>
+          <div class="component-preview">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input
+                Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  disabled class="input input-outline"></div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; disabled type=&quot;text&quot; class=&quot;input input-outline&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;                        
+              </code></pre>
+          </div>
+          <h4>Error</h4>
+          <div class="component-preview">
+            <div class="form-element has-error"><label class="form-element__label"
+                for="text-input-id-0">Input Label</label>
+              <div class="form-element__control"><input id="text-input-id-0" placeholder="Placeholder text…"
+                  required aria-describedby="error-message-id-0" class="input" aria-invalid="true"></div>
+              <div class="form-element__help" id="error-message-id-0">Enter a value.</div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element has-error&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; required=&quot;&quot; aria-describedby=&quot;error-message-id-0&quot; type=&quot;text&quot; class=&quot;input&quot; aria-invalid=&quot;true&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;form-element__help&quot; id=&quot;error-message-id-0&quot;&gt;Enter a value.&lt;/div&gt;
+&lt;/div&gt;                        
+              </code></pre>
+          </div>
+          <h3>With Icon</h3>
+          <h4>Icon on the right</h4>
+          <div class="component-preview">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input
+                Label</label>
+              <div class="form-element__control input-has-icon input-has-icon_right"><input
+                  id="text-input-id-0" placeholder="Placeholder text…" class="input"> <button
+                  class="button button_icon" title="검색버튼"><svg class="button__icon" aria-hidden="true">
+                    <use xlink:href="@/assets/images/icons/symbols.svg#search"></use>
+                  </svg></button></div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control input-has-icon input-has-icon_right&quot;&gt;
+    &lt;input type=&quot;text&quot; id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; class=&quot;input&quot; /&gt;
+    &lt;button class=&quot;button button_icon&quot; title=&quot;Search&quot;&gt;
+      &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#search&quot;&gt;&lt;/use&gt;
+      &lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;                                     
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'radiobutton'" class="component-section">
+        <section class="component-header">
+          <h2>Radio Button Group</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <div class="component-preview" style="background-color:#E7EDF6">
+            <fieldset class="form-element">
+              <legend class="form-element__legend form-element__label">요일</legend>
+              <div class="radio_button-group">
+                <span class="button radio_button">
+                  <input type="radio" name="example-unique-name-197" id="example-unique-id-199" value="monday">
+                  <label class="radio_button__label" for="example-unique-id-199">
+                    <span class="radio_faux">월</span>
+                  </label>
+                </span>
+                <span class="button radio_button">
+                  <input type="radio" name="example-unique-name-197" id="example-unique-id-200" value="tuesday">
+                  <label class="radio_button__label" for="example-unique-id-200">
+                    <span class="radio_faux">화</span>
+                  </label>
+                </span>
+                <span class="button radio_button">
+                  <input type="radio" name="example-unique-name-197" id="example-unique-id-201" value="wednesday">
+                  <label class="radio_button__label" for="example-unique-id-201">
+                    <span class="radio_faux">수</span>
+                  </label>
+                </span>
+                <span class="button radio_button">
+                  <input type="radio" name="example-unique-name-197" id="example-unique-id-202" value="thursday">
+                  <label class="radio_button__label" for="example-unique-id-202">
+                    <span class="radio_faux">목</span>
+                  </label>
+                </span>
+                <span class="button radio_button">
+                  <input type="radio" name="example-unique-name-197" id="example-unique-id-203" value="friday">
+                  <label class="radio_button__label" for="example-unique-id-203">
+                    <span class="radio_faux">금</span>
+                  </label>
+                </span>
+              </div>
+            </fieldset>            
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element__control&quot;&gt;
+  &lt;div class=&quot;checkbox&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; name=&quot;options&quot; id=&quot;checkbox-unique-id-3&quot; value=&quot;checkbox-unique-id-3&quot;
+      checked=&quot;&quot; /&gt;
+    &lt;label class=&quot;checkbox__label&quot; for=&quot;checkbox-unique-id-3&quot;&gt;
+      &lt;span class=&quot;checkbox_faux&quot;&gt;&lt;svg class=&quot;icon&quot;&gt;&lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;span class=&quot;form-element__label&quot;&gt;Checkbox Label&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'buttonicons'" class="component-section">
+        <section class="component-header">
+          <h2>Button Icons</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <div class="component-preview"><button class="button button_icon" title="Button Title"><svg
+                class="button__icon" aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class=&quot;button button_icon&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;                   
+              </code></pre>
+          </div>
+          <h3>Sizes</h3>
+          <div class="component-preview"><button class="button button_icon button_icon-large"
+              title="Button Title"><svg class="button__icon" aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button> <button class="button button_icon"
+              title="Button Title"><svg class="button__icon" aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button> <button
+              class="button button_icon button_icon-small" title="Button Title"><svg class="button__icon"
+                aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button> <button
+              class="button button_icon button_icon-x-small" title="Button Title"><svg class="button__icon"
+                aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button> <button
+              class="button button_icon button_icon-xx-small" title="Button Title"><svg
+                class="button__icon" aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Button</span></button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class=&quot;button button_icon button_icon-large&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class=&quot;button button_icon&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class=&quot;button button_icon button_icon-small&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class=&quot;button button_icon button_icon-x-small&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class=&quot;button button_icon button_icon-xx-small&quot; title=&quot;Button Title&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Menu&lt;/span&gt;
+&lt;/button&gt;                      
+              </code></pre>
+          </div>
+          <h3>Icon Container</h3>
+          <div class="component-preview">
+            <div style="color:#246beb"><button
+                class="button button_outline-primary button_icon button_icon-border"
+                title="Reset Icon"><svg class="button__icon" aria-hidden="true">
+                  <use xlink:href="@/assets/images/icons/symbols.svg#reset"></use>
+                </svg> <span class="assistive-text">Reset</span></button></div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class=&quot;button button_outline-primary button_icon button_icon-border&quot; title=&quot;Reset Icon&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#reset&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Reset&lt;/span&gt;
+&lt;/button&gt;                           
+              </code></pre>
+          </div>
+          <h3>States</h3>
+          <h4>Diabled</h4>
+          <div class="component-preview"><button class="button button_icon" disabled title="Myshare Icon"><svg
+                class="button__icon" aria-hidden="true">
+                <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+              </svg> <span class="assistive-text">Myshare</span></button></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;button class=&quot;button button_icon&quot; disabled title=&quot;Myshare Icon&quot;&gt;
+  &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#myshare&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+  &lt;span class=&quot;assistive-text&quot;&gt;Myshare&lt;/span&gt;
+&lt;/button&gt;                          
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'tabs'" class="component-section">
+        <section class="component-header">
+          <h2>Tabs</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <div class="component-preview">
+            <div class="tabs">
+              <ul class="tabs__nav" role="tablist">
+                <li class="tabs__item is-active" title="Item One" role="presentation"><a class="tabs__link"
+                    href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-1"
+                    id="tab-1__item">Item One</a></li>
+                <li class="tabs__item" title="Item Two" role="presentation"><a class="tabs__link" href="#"
+                    role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-2"
+                    id="tab-2__item">Item Two</a></li>
+                <li class="tabs__item" title="Item Three" role="presentation"><a class="tabs__link" href="#"
+                    role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-3"
+                    id="tab-3__item">Item Three</a></li>
+              </ul>
+              <div id="tab-1" class="tabs__content show" role="tabpanel"
+                aria-labelledby="tab-1__item">Item One Content</div>
+              <div id="tab-2" class="tabs__content hide" role="tabpanel"
+                aria-labelledby="tab-2__item">Item Two Content</div>
+              <div id="tab-3" class="tabs__content hide" role="tabpanel"
+                aria-labelledby="tab-3__item">Item Three Content</div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+  &lt;div class="tabs"&gt;
+  &lt;ul class="tabs__nav" role="tablist"&gt;
+    &lt;li class="tabs__item is-active" title="Item One" role="presentation"&gt;
+      &lt;a class="tabs__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-1" id="tab-1__item"&gt;Item One&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="tabs__item" title="Item Two" role="presentation"&gt;
+      &lt;a class="tabs__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-2" id="tab-2__item"&gt;Item Two&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="tabs__item" title="Item Three" role="presentation"&gt;
+      &lt;a class="tabs__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-3" id="tab-3__item"&gt;Item Three&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div id="tab-1" class="tabs__content show" role="tabpanel" aria-labelledby="tab-1__item"&gt;Item One Content&lt;/div&gt;
+  &lt;div id="tab-2" class="tabs__content hide" role="tabpanel" aria-labelledby="tab-2__item"&gt;Item Two Content&lt;/div&gt;
+  &lt;div id="tab-3" class="tabs__content hide" role="tabpanel" aria-labelledby="tab-3__item"&gt;Item Three Content&lt;/div&gt;
+&lt;/div&gt;              
+            </code></pre>
+          </div>
+          <h3>With Icon</h3>
+          <p class="docs-desc">탭의 컨테이너에 flex속성 <code class="doc">.tabs_flex</code>를 추가한다. 아이콘 탭으로 변경하기 위해 <code
+              class="doc">.tabs__with-icon</code>를 추가한다.</p>
+          <div class="component-preview" style="background-color:#e7edf6">
+            <div style="width:320px">
+              <div class="tabs tabs_flex">
+                <ul class="tabs__nav" role="tablist">
+                  <li class="tabs__item is-active" title="채팅" role="presentation"><a
+                      class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="0" aria-selected="true"
+                      aria-controls="tab-1" id="tab-1__item"><svg class="icon">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#chat"></use>
+                      </svg> <b class="tabs__label">채팅</b></a></li>
+                  <li class="tabs__item" title="학생" role="presentation"><a
+                      class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="-1" aria-selected="false"
+                      aria-controls="tab-2" id="tab-2__item"><svg class="icon">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#student"></use>
+                      </svg> <b class="tabs__label">학생</b></a></li>
+                  <li class="tabs__item" title="정보" role="presentation"><a
+                      class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="-1" aria-selected="false"
+                      aria-controls="tab-3" id="tab-3__item"><svg class="icon">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#info"></use>
+                      </svg> <b class="tabs__label">정보</b></a></li>
+                </ul>
+                <div id="tab-1" class="tabs__content show" role="tabpanel"
+                  aria-labelledby="tab-1__item">Item One Content</div>
+                <div id="tab-2" class="tabs__content hide" role="tabpanel"
+                  aria-labelledby="tab-2__item">Item Two Content</div>
+                <div id="tab-3" class="tabs__content hide" role="tabpanel"
+                  aria-labelledby="tab-3__item">Item Three Content</div>
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="tabs tabs_flex"&gt;
+  &lt;ul class="tabs__nav" role="tablist"&gt;
+    &lt;li class="tabs__item is-active" title="채팅" role="presentation"&gt;
+      &lt;a class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-1" id="tab-1__item"&gt;
+        &lt;span class="icon-container current-color" title="chat icon"&gt;
+          &lt;svg class="icon"&gt;
+            &lt;use xlink:href="@/assets/images/icons/symbols.svg#chat"&gt;&lt;/use&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;b class="tabs__label"&gt;채팅&lt;/b&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="tabs__item" title="학생" role="presentation"&gt;
+      &lt;a class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-2" id="tab-2__item"&gt;
+        &lt;span class="icon-container current-color" title="student icon"&gt;
+          &lt;svg class="icon"&gt;
+            &lt;use xlink:href="@/assets/images/icons/symbols.svg#student"&gt;&lt;/use&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;b class="tabs__label"&gt;학생&lt;/b&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="tabs__item" title="정보" role="presentation"&gt;
+      &lt;a class="tabs__link tabs__with-icon" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-3" id="tab-3__item"&gt;
+        &lt;span class="icon-container current-color" title="info icon"&gt;
+          &lt;svg class="icon"&gt;
+            &lt;use xlink:href="@/assets/images/icons/symbols.svg#info"&gt;&lt;/use&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;b class="tabs__label"&gt;정보&lt;/b&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div id="tab-1" class="tabs__content show" role="tabpanel" aria-labelledby="tab-1__item"&gt;Item One Content&lt;/div&gt;
+  &lt;div id="tab-2" class="tabs__content hide" role="tabpanel" aria-labelledby="tab-2__item"&gt;Item Two Content&lt;/div&gt;
+  &lt;div id="tab-3" class="tabs__content hide" role="tabpanel" aria-labelledby="tab-3__item"&gt;Item Three Content&lt;/div&gt;
+&lt;/div&gt;   
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'icon'" class="component-section">
+        <section class="component-header">
+          <h2>Icons</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Color</h3>
+          <h4>Default</h4>
+          <p class="docs-desc">아이콘의 기본 색상으로 변경하려는 경우 <code class="doc">.icon-default</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon-default">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Description of icon when needed"&gt;
+  &lt;svg class="icon icon-default"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>Current</h4>
+          <p class="docs-desc">아이콘 색상을 부모와 동일하게 변경하려는 경우 <code class="doc">.current-color</code>를 아이콘의 컨테이너에 추가한다.
+          </p>
+          <div class="component-preview"><span style="color:purple"><span class="icon-container current-color"
+                title="Link icon"><svg class="icon">
+                  <use xlink:href="@/assets/images/icons/symbols.svg#link_on"></use>
+                </svg></span></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span style="color: purple;"&gt;
+  &lt;span class="icon-container current-color" title="Description of icon when needed"&gt;
+    &lt;svg class="icon"&gt;
+      &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+    &lt;/svg&gt;
+  &lt;/span&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>Success</h4>
+          <p class="docs-desc">아이콘 색상을 Success로 변경하려는 경우 <code class="doc">.icon-success</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon-success">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link_on"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon-success"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>Error</h4>
+          <p class="docs-desc">아이콘 색상을 Error로 변경하려는 경우 <code class="doc">.icon-error</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon-error">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link_on"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon-error"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h3>Size</h3>
+          <h4>Default</h4>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg class="icon">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>X-Small</h4>
+          <p class="docs-desc">아이콘 크기를 X-Small로 변경하려는 경우 <code class="doc">.icon_x-small</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon_x-small">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon_x-small"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>Small</h4>
+          <p class="docs-desc">아이콘 크기를 Small로 변경하려는 경우 <code class="doc">.icon_small</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon_small">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon_small"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>Large</h4>
+          <p class="docs-desc">아이콘 크기를 Large로 변경하려는 경우 <code class="doc">.icon_large</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon_large">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon_large"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h4>X-Large</h4>
+          <p class="docs-desc">아이콘 크기를 X-Large로 변경하려는 경우 <code class="doc">.icon_x-large</code>를 추가한다.</p>
+          <div class="component-preview"><span class="icon-container" title="Link icon"><svg
+                class="icon icon_x-large">
+                <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+              </svg></span></div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;span class="icon-container" title="Link icon"&gt;
+  &lt;svg class="icon icon_x-large"&gt;
+    &lt;use xlink:href="@/assets/images/icons/symbols.svg#link"&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/span&gt;
+            </code></pre>
+          </div>
+          <h3>Icons</h3>
+          <div class="component-preview">
+            <ul class="docs-icon">
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-link" title="Link icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#link"></use>
+                    </svg></span>
+                  <figcaption>link</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-lock" title="Lock icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#lock"></use>
+                    </svg></span>
+                  <figcaption>lock</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-maximize" title="Maximize icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#maximize"></use>
+                    </svg></span>
+                  <figcaption>maximize</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-message-text" title="Message text icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#message_text"></use>
+                    </svg></span>
+                  <figcaption>message_text</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-mobile" title="Mobile icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#mobile"></use>
+                    </svg></span>
+                  <figcaption>mobile</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-pin" title="Pin icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#pin"></use>
+                    </svg></span>
+                  <figcaption>pin</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-myshare" title="Myshare icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#myshare"></use>
+                    </svg></span>
+                  <figcaption>myshare</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-share" title="Share icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#share"></use>
+                    </svg></span>
+                  <figcaption>share</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-print" title="Print icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#print"></use>
+                    </svg></span>
+                  <figcaption>print</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-pin" title="Pin icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#pin_fill"></use>
+                    </svg></span>
+                  <figcaption>pin_fill</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-more" title="More icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#more"></use>
+                    </svg></span>
+                  <figcaption>more</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-user-edit" title="User edit icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#user_edit"></use>
+                    </svg></span>
+                  <figcaption>user_edit</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-folder-open" title="Folder open icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#folder_open"></use>
+                    </svg></span>
+                  <figcaption>folder_open</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-chat" title="Chat icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#chat"></use>
+                    </svg></span>
+                  <figcaption>chat</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-info" title="Info icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#info"></use>
+                    </svg></span>
+                  <figcaption>info</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-student" title="Student icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#student"></use>
+                    </svg></span>
+                  <figcaption>student</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-arrow-right" title="Arrow Right icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#arrow_right"></use>
+                    </svg></span>
+                  <figcaption>arrow_right</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-export" title="Export icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#export"></use>
+                    </svg></span>
+                  <figcaption>export</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-reset" title="Reset icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#reset"></use>
+                    </svg></span>
+                  <figcaption>reset</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-menu" title="Menu Off icon"><svg class="icon">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#menu_off"></use>
+                    </svg></span>
+                  <figcaption>menu_off</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-search" title="Search icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#search"></use>
+                    </svg></span>
+                  <figcaption>search</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-arrow_down" title="Arrow Down icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#arrow_down"></use>
+                    </svg></span>
+                  <figcaption>arrow down</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-time" title="Time icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#time"></use>
+                    </svg></span>
+                  <figcaption>time</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-check" title="Check icon"><svg
+                      class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#check"></use>
+                    </svg></span>
+                  <figcaption>Check</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure>
+                  <span class="icon-container icon-arrow_extend" title="Arrow Extend icon">
+                    <svg class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#arrow_extend"></use>
+                    </svg>
+                  </span>
+                  <figcaption>arrow_extend</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure>
+                  <span class="icon-container icon-cs" title="CS icon">
+                    <svg class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#cs"></use>
+                    </svg>
+                  </span>
+                  <figcaption>cs</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure>
+                  <span class="icon-container icon-my" title="My icon">
+                    <svg class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#my"></use>
+                    </svg>
+                  </span>
+                  <figcaption>my</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure>
+                  <span class="icon-container icon-close" title="Close icon">
+                    <svg class="icon icon-default">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#close"></use>
+                    </svg>
+                  </span>
+                  <figcaption>close</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-menu" title="Menu On icon"><svg class="icon">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#menu_on"></use>
+                    </svg></span>
+                  <figcaption>menu_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-link" title="Link icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#link_on"></use>
+                    </svg></span>
+                  <figcaption>link_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-lock" title="Lock icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#lock_on"></use>
+                    </svg></span>
+                  <figcaption>lock_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-maximize" title="Maximize icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#maximize_on"></use>
+                    </svg></span>
+                  <figcaption>maximize_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-message-text" title="Message text icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#message_text_on"></use>
+                    </svg></span>
+                  <figcaption>message_text_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-mobile" title="Mobile icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#mobile_on"></use>
+                    </svg></span>
+                  <figcaption>mobile_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-pin" title="Pin icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#pin_on"></use>
+                    </svg></span>
+                  <figcaption>pin_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-myshare" title="Myshare icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#myshare_on"></use>
+                    </svg></span>
+                  <figcaption>myshare_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-user-edit" title="User edit icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#user_edit_on"></use>
+                    </svg></span>
+                  <figcaption>user_edit_on</figcaption>
+                </figure>
+              </li>
+              <li class="docs-icon-list">
+                <figure><span class="icon-container icon-folder-open" title="Folder open icon"><svg
+                      class="icon icon-success">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#folder_open_on"></use>
+                    </svg></span>
+                  <figcaption>folder_open_on</figcaption>
+                </figure>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'color'" class="component-section">
+        <section class="component-header">
+          <h2>Color System</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <div class="palette-wrap">
+            <div class="color-palette">
+              <h3>Black & White</h3>
+              <ul>
+                <li class="color-item" data-color="#000" style="color:#fff"><button class="color-title">black</button>
+                  <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#fff" style="border:1px solid #ddd"><button
+                    class="color-title">white</button> <button class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+            <div class="color-palette">
+              <h3>Grayscale</h3>
+              <p class="docs-desc">GRAYSCALE은 정보전달과 위계를 나타내는 중요한 역할을 한다. 주로 BG, Text, line에 사용되며 특히 텍스트는 가독성을 고려해야 하기
+                때문에 배경과의 명암비를 고려해야 한다.</p>
+              <ul>
+                <li class="color-item" data-color="#F9FAFA"><button class="color-title">gray01</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#EDEFF1"><button class="color-title">gray02</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#D9DBE0"><button class="color-title">gray03</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#C6CAD1"><button class="color-title">gray04</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#AAB0BB"><button class="color-title">gray05</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#808998"><button class="color-title">gray06</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#65728A"><button class="color-title">gray07</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#3D4A62"><button class="color-title">gray08</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#1C283E"><button class="color-title">gray09</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#141426"><button class="color-title">gray10</button> <button
+                    class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+            <div class="color-palette">
+              <h3>Primary Color</h3>
+              <p class="docs-desc">Primary color는 버튼, 활성 상태와 같은 UI 전체의 주요 구성 요소에 사용된다.</p>
+              <ul>
+                <li class="color-item" data-color="#E9F0FD"><button class="color-title">primary01</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#BBD1F9"><button class="color-title">primary02</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#9ABBF6"><button class="color-title">primary03</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#6C9CF2"><button class="color-title">primary04</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#5089EF"><button class="color-title">primary05</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#246BEB"><button class="color-title">primary06</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#2161D6"><button class="color-title">primary07</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#1A4CA7"><button class="color-title">primary08</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#143B81"><button class="color-title">primary09</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#0F2D63"><button class="color-title">primary10</button> <button
+                    class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+            <div class="color-palette">
+              <h3>Text Color</h3>
+              <ul>
+                <li class="color-item" data-color="#141426" style="color:#fff"><button
+                    class="color-title">text01</button> <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#1C283E" style="color:#fff"><button
+                    class="color-title">text02</button> <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#3D4A62" style="color:#fff"><button
+                    class="color-title">text03</button> <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#65728A" style="color:#fff"><button
+                    class="color-title">text04</button> <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#808998" style="color:#fff"><button
+                    class="color-title">text05</button> <button class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+            <div class="color-palette">
+              <h3>Background Color</h3>
+              <ul>
+                <li class="color-item" data-color="#fff" style="border:1px solid #ddd"><button
+                    class="color-title">bg-white</button> <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#DDEBFF"><button class="color-title">bg-blue</button> <button
+                    class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#E7EDF6"><button class="color-title">bg-light-blue</button> <button
+                    class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+            <div class="color-palette">
+              <h3>System Color</h3>
+              <ul>
+                <li class="color-item" data-color="#DA1E28"><button class="color-title" style="color:#fff">red</button>
+                  <button class="hex-button">Hex</button></li>
+                <li class="color-item" data-color="#FFD400"><button class="color-title">accent</button> <button
+                    class="hex-button">Hex</button></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'context'" class="component-section">
+        <section class="component-header">
+          <h2>Context Menu</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <div class="component-preview">
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'modal'" class="component-section">
+        <section class="component-header">
+          <h2>Modal</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <div class="component-preview">
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;Card Title&lt;/div&gt;
+  &lt;div class="card-content"&gt;This is some card content.&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'card'" class="component-section">
+        <section class="component-header">
+          <h2>Cards</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>Adaptive for PC screens</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Card Item</h3>
+          <div class="component-preview">
+            <div style="width: 280px;">
+              <article class="card-item">
+                <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
+                  <source src="" type="video/mp4">
+                </video>
+                <div class="card-controls">
+                  <div class="card-control flex-end">
+                    <button class="button button_icon button_icon-x-small" title="Pin Icon">
+                      <svg class="button__icon" aria-hidden="true">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#pin_fill"></use>
+                      </svg>
+                      <span class="assistive-text">상단고정</span>
+                    </button>
+                    <button class="button button_icon button_icon-x-small" title="More Icon">
+                      <svg class="button__icon" aria-hidden="true">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#more"></use>
+                      </svg>
+                      <span class="assistive-text">더보기</span>
+                    </button>
+                  </div>
+                  <div class="card-meta flex-start">
+                    <div class="name">김나나</div>
+                    <div class="badge warning">공유중</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;article class=&quot;card-item&quot;&gt;
+  &lt;video height=&quot;100%&quot; poster=&quot;@/assets/images/temp/video_sample.png&quot; autoplay&gt;
+    &lt;source src=&quot;&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;/video&gt;
+  &lt;div class=&quot;card-controls&quot;&gt;
+    &lt;div class=&quot;card-control flex-end&quot;&gt;
+      &lt;button class=&quot;button button_icon button_icon-x-small&quot; title=&quot;Pin Icon&quot;&gt;
+        &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#pin_fill&quot;&gt;&lt;/use&gt;
+        &lt;/svg&gt;
+        &lt;span class=&quot;assistive-text&quot;&gt;상단고정&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;button class=&quot;button button_icon button_icon-x-small&quot; title=&quot;More Icon&quot;&gt;
+        &lt;svg class=&quot;button__icon&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;use xlink:href=&quot;@/assets/images/icons/symbols.svg#more&quot;&gt;&lt;/use&gt;
+        &lt;/svg&gt;
+        &lt;span class=&quot;assistive-text&quot;&gt;더보기&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-meta flex-start&quot;&gt;
+      &lt;div class=&quot;name&quot;&gt;김나나&lt;/div&gt;
+      &lt;div class=&quot;badge warning&quot;&gt;공유중&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;            
+            </code></pre>
+          </div>
+
+          <h3>States</h3>
+          <h4>Active</h4>
+          <p class="docs-desc">클릭 시 <code class="doc">.active</code> 추가 </p>
+          <div class="component-preview">
+            <div style="width: 280px;">
+              <article class="card-item active">
+                <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
+                  <source src="" type="video/mp4">
+                </video>
+                <div class="card-controls">
+                  <div class="card-control flex-end">
+                    <button class="button button_icon button_icon-x-small" title="Pin Icon">
+                      <svg class="button__icon" aria-hidden="true">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#pin_fill"></use>
+                      </svg>
+                      <span class="assistive-text">상단고정</span>
+                    </button>
+                    <button class="button button_icon button_icon-x-small" title="More Icon">
+                      <svg class="button__icon" aria-hidden="true">
+                        <use xlink:href="@/assets/images/icons/symbols.svg#more"></use>
+                      </svg>
+                      <span class="assistive-text">더보기</span>
+                    </button>
+                  </div>
+                  <div class="card-meta flex-start">
+                    <div class="name">김나나</div>
+                    <div class="badge warning">공유중</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;article class=&quot;card-item active&quot;&gt;
+@.
+&lt;/article&gt;    
+            </code></pre>
+          </div>
+
+          <h4>수업중</h4>
+          <p class="docs-desc">수업 중 badge의 클래스 <code class="doc">.error</code>로 변경 </p>
+          <div class="component-preview">
+            <article class="card-item active" style="width: 280px;">
+              <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
+                <source src="" type="video/mp4">
+              </video>
+              <div class="card-controls">
+                <div class="card-control flex-end">
+                  <button class="button button_icon button_icon-x-small" title="Pin Icon">
+                    <svg class="button__icon" aria-hidden="true">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#pin_fill"></use>
+                    </svg>
+                    <span class="assistive-text">상단고정</span>
+                  </button>
+                  <button class="button button_icon button_icon-x-small" title="More Icon">
+                    <svg class="button__icon" aria-hidden="true">
+                      <use xlink:href="@/assets/images/icons/symbols.svg#more"></use>
+                    </svg>
+                    <span class="assistive-text">더보기</span>
+                  </button>
+                </div>
+                <div class="card-meta flex-start">
+                  <div class="name">김나나</div>
+                  <div class="badge error">수업중</div>
+                </div>
+              </div>
+            </article> 
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+            </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <div v-show="activeComponent === 'datetime'" class="component-section">
+        <section class="component-header">
+          <h2>Datetime Picker</h2>
+          <ul>
+            <li>HTML/CSS: Dev Ready</li>
+            <li>PC only</li>
+          </ul>
+        </section>
+        <section class="component-main">
+          <h3>Base</h3>
+          <p class="docs-desc">
+            <del>날짜 선택 Input은 <a href="https://github.com/flatpickr/flatpickr" target="_blank" title="flatpickr 공식 홈페이지">flatpickr</a> 라이브러리 사용</del>
+            <ul class="docs-list">
+              <li><del>/lib/flatpickr/flatpickr.min.css</del></li>
+              <li><del>/lib/flatpickr/flatpickr.min.js</del></li>
+              <li><del>/src/assets/js/datetimepicker.js</del></li>
+            </ul>
+          </p>
+          <div class="component-preview" style="background-color:#f5f5f5">
+            <div class="form-element"><label class="form-element__label" for="text-input-id-0">Input Label</label>
+              <div class="form-element__control">
+                <input type="text" id="datepicker" placeholder="Select Date/Time" data-input class="input input_date">
+              </div>
+            </div>
+          </div>
+          <div class="code-block">
+            <div class="action-bar"><button class="copy-button" @click="copyToClipboard($event)">Copy</button></div>
+            <pre><code ref="code" class="language-html">
+&lt;div class=&quot;form-element&quot;&gt;
+  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
+  &lt;div class=&quot;form-element__control&quot;&gt;
+    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; type=&quot;text&quot; class=&quot;input&quot; value=&quot;&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;              
+              </code></pre>
+          </div>
+        </section>
+      </div>
+
+      <!-- 추가 섹션들 -->
+    </main>
+  </div>
+</template>
+
+<script>
+import Prism from 'prismjs';
+// 필요한 언어 및 테마를 로드
+import 'prismjs/components/prism-javascript';
+import 'prismjs/themes/prism-coy.css'; // 'coy' 테마를 임포트
+
+export default {
+  mounted() {
+    this.highlightCode(); // 최초 로드 시 코드 하이라이팅
+  },
+  updated() {
+    this.highlightCode(); // 메뉴 클릭 후 컴포넌트 변경 시에도 하이라이팅
+  },
+  methods: {
+    highlightCode() {
+      // 모든 코드 블록에 하이라이팅을 적용
+      const codeBlocks = this.$refs.code;
+      if (codeBlocks) {
+        Prism.highlightElement(codeBlocks);
+      }
+    },
+    copyToClipboard(event) {
+      // 복사할 코드 블록의 텍스트를 가져옴
+      const codeBlock = event.target.closest('.code-block').querySelector('code').innerText.trim();
+      
+      // 임시 텍스트 영역을 만들어서 텍스트를 선택 후 복사
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = codeBlock;
+      document.body.appendChild(tempTextArea);
+
+      // 텍스트 선택
+      tempTextArea.select();
+      tempTextArea.setSelectionRange(0, 99999); // 모바일 대응
+
+      // 복사 명령 실행
+      document.execCommand('copy');
+
+      // 임시 텍스트 영역 제거
+      document.body.removeChild(tempTextArea);
+
+      // 버튼 텍스트를 "Copied!"로 변경
+      const button = event.target;
+      const originalText = button.innerText;
+      button.innerText = 'Copied!';
+      setTimeout(() => {
+        button.innerText = originalText;
+      }, 1000);
+    }
+  },
+  data() {
+    return {
+      activeComponent: 'chat', // 초기 활성화된 컴포넌트
+      sidebarLinks: [
+        { name: 'Chat', component: 'chat' },
+        { name: 'Design Tokens', component: 'token' },
+        { name: 'Badges', component: 'badge' },
+        { name: 'Toast', component: 'toast' },
+        { name: 'Buttons', component: 'button' },
+        { name: 'Select', component: 'select' },
+        { name: 'Global Header', component: 'globalheader' },
+        { name: 'Page Headers', component: 'pageheader' },
+        { name: 'QR Code', component: 'code' },
+        { name: 'Checkbox', component: 'checkbox' },
+        { name: 'Input', component: 'input' },
+        { name: 'Radio Button Group', component: 'radiobutton' },
+        { name: 'Button Icons', component: 'buttonicons' },
+        { name: 'Tabs', component: 'tabs' },
+        { name: 'Icons', component: 'icon' },
+        { name: 'Color', component: 'color', del: true },
+        { name: 'Context Menu', component: 'context' },
+        { name: 'Modal', component: 'modal' },
+        { name: 'Cards', component: 'card' },
+        { name: 'Datetime Picker', component: 'datetime', del: true } // 삭제된 항목은 추가 속성으로 표시
+      ]
+    };
+  }
+};
+</script>
+<style scoped>
+/* 메뉴의 활성화된 항목에 대한 스타일 */
+.active {
+  font-weight: bold;
+}
+</style>
+
+<style>
+
+</style>

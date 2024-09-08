@@ -1,0 +1,273 @@
+/*----------------------
+  Cards
+----------------------*/
+.cards-container {
+  display: grid;
+  grid-gap: 22px 14px;
+  overflow-y: visible;
+  overflow-x: auto;
+  flex: 1; /* 남은 공간을 모두 차지 */
+  align-items: start; /* 그리드 아이템이 셀 상단에 위치하도록 */
+  grid-auto-rows: min-content; /* 각 행의 높이를 카드 내용에 맞춤 */
+  padding: 28px 3.542vw 32px;
+}
+
+/* 카드 아이템 스타일링 */
+.card-item {
+  width: 100%;
+  min-width: 167px; 
+  aspect-ratio: 280 / 187; /* 카드의 비율 */
+  border-radius: var(--radius-2);
+  box-sizing: border-box;
+  // border: 4px solid #fff;
+  transition: 0.3s ease;
+  background-color: var(--color-black);
+  overflow: hidden; /* 콘텐츠가 카드 영역을 넘어가지 않도록 설정 */
+  position: relative;
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  video[poster] { 
+    /* 포스터 이미지의 크기를 비디오 영상에 꽉차도록 */
+    height:100%;
+    width:100%;
+  }
+
+  /* active */
+  &:hover,
+  &:focus,
+  &.active {
+    box-shadow: 0 0 0 4px var(--color-yellow);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1 );
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 4px var(--color-yellow);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1 );
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card-control {
+      opacity: 1;
+    }
+  }
+}
+
+.card-controls {
+  @include flex-space-between($direction: column);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--color-white);
+  z-index: 2;
+}
+
+.card-control {
+  width: 100%;
+  gap: 10px;
+  padding: 13px;
+  opacity: 0;
+  transition: 0.2s;
+
+  button {
+    &.active {
+      color: var(--color-blue-06);
+    }
+  }
+}
+
+.card-meta {
+  width: 100%;
+  gap: 8px;
+}
+
+.name {
+  min-width: 74px;
+  padding: 8px 16px;
+  text-align: center;
+  color: var(--color-white);
+  border-radius: 0 var( --radius-1) 0 0;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  @include font-title-01-b;
+  @include truncate(98px);
+}
+
+/*----------------------
+  5열 & 6열 개수 고정
+  (해상도가 줄어들면 가로스크롤)
+----------------------*/
+/* 기본 설정: 화면 너비가 1920px 이상일 때 */
+@media (min-width: 1920px) {
+  .cards-container {
+      grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* snb가 열렸을 때 */
+.snb:not(.closed) ~ .main-content .cards-container {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* 1280px ~ 1919px일 때 */
+@media (max-width: 1919px) and (min-width: 1280px) {
+  .cards-container {
+      grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* snb가 열렸을 때 */
+  .snb:not(.closed) ~ .main-content .cards-container {
+      grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* 1280px 미만일 때 */
+@media (max-width: 1300px) {
+  .snb:not(.closed) ~ .main-content .cards-container {
+    grid-gap: 18px 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* 1280px 미만일 때 */
+@media (max-width: 1279px) {
+  .cards-container {
+    grid-template-columns: repeat(6, 1fr);
+    overflow-x: auto;
+  }
+
+  /* snb가 열렸을 때 */
+  .snb:not(.closed) ~ .main-content .cards-container {
+      grid-template-columns: repeat(5, 1fr);
+      overflow-x: auto;
+  }
+}
+
+/*----------------------
+  auto-fit 열 자동 맞춤
+  (최소/최대 개수 제한)
+----------------------*/
+/* pages/layout_typeB Style */
+.auto-fit {
+  /* 1367px ~ 1919px: 열 개수 자동 맞춤 */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+@media screen and (min-width: 1920px) {
+    /* 1920 이상이고 snb가 닫혔을 때 : 열 6개 제한 */
+  .auto-fit {
+    grid-template-columns: repeat(6, minmax(280px, 1fr)) !important;
+  }
+
+  /* 1920 이상이고 snb가 열렸을 때 : 열 5개 제한 */
+  .snb:not(.closed) ~ .main-content .auto-fit {
+    grid-template-columns: repeat(5, minmax(280px, 1fr)) !important;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+    /* 1366 이하이고 snb가 닫혔을 때 : 열 4개 제한 */
+  .auto-fit {
+    grid-template-columns: repeat(4, minmax(280px, 1fr)) !important;
+    padding: 28px 3.1vw 32px;
+  }
+  .page-header {
+    padding: 0 3.1vw 4px;
+  }
+
+    /* 1366 이하이고 snb가 닫혔을 때 : 열 3개 제한 */
+  .snb:not(.closed) ~ .main-content .auto-fit {
+    grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
+  }
+}
+
+/*----------------------
+  QR Code :Image 또는 Canvas
+----------------------*/
+.code {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0;
+  border-radius: 1rem;
+  background-color: var(--color-white);
+  color: var(--color-text-03);
+
+  // QR Code
+  &_qr {
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  // Text Code
+  &_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      display: block;
+      @include typography(0.9375rem, 500, 150%, -0.3%);
+    }
+    em {
+      // Heading-01
+      @include typography(1.75rem, 700, 140%, -0.3%);
+      color: var(--color-text-01);
+    }
+  }
+
+  // bg color
+  &--blue {
+    background-color: var(--color-blue-01);
+  }
+
+  // sizing
+  &_small {
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-radius: 0.75rem;
+
+    .code_qr {
+      width: 3.375rem;
+      height: 3.375rem;
+    }
+
+    .code_text {
+      span {
+        font-size: 0.8125rem;
+      }
+      em {
+        // Heading-01
+        font-size: 1.25rem;
+        color: var(--color-text-01);
+      }
+    }
+    
+  }
+}

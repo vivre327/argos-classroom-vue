@@ -1,0 +1,213 @@
+/*----------------------
+  Global Header
+----------------------*/
+.global {
+  &-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background: var(--bg-light-blue);
+    padding: 1.2813rem 1rem;
+    height: 5rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  
+    // Global Header Container
+    &_container {
+      position: sticky;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      
+      .assistive-text {
+        &_focus {
+          top: 0;
+          color: #5e5e5e;
+          background: #fff;
+        }
+      }
+    }
+  
+    // Global Header Item
+    &__item {
+      // padding: 0 1rem;
+
+      &.left {
+        flex: 0 1 auto; /* A는 좌측 끝 */
+      }
+      &.center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &.right {
+        flex: 0 1 auto; /* C는 우측 끝 */
+      }
+    }
+
+    // flex
+    &--flex {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      gap: 2.5rem;
+    }
+    
+    // Global Header Logo
+    &__logo {
+      width: 12.5rem;
+      height: 2.5rem;
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--color-blue-10);
+    }
+
+    // Global Header Logo
+    &__time {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .text {
+        font-size: 1rem;
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--color-text-03);
+      }
+    }
+
+    // Console Header
+    &_console {
+      padding: 1.2813rem 5rem;
+    }
+  }
+
+  // Global Header Actions
+  &-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1.25rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: center;
+
+    // Actions Item
+    &__item {
+      color: var(--color-text-04);
+    }
+  }
+  // Global Header Controls
+  &-controls {
+
+    .form-element__control {
+      width: 320px;
+    }
+  }
+
+  &__text {
+    font-size: 1.375rem;
+    font-weight: 500;
+    line-height: 140%;
+    color: var(--color-text-01);
+  }
+}
+
+/*----------------------
+  Page Headers
+----------------------*/
+.page-header {
+  width: 100%;
+  height: fit-content;
+  padding: 0 3.542vw 4px;
+  background-color: var(--color-white);
+  
+  // page header row
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+  }
+
+  // Actions: 전체선택
+  &__actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+    align-items: center;
+    gap: 0.25rem;
+
+    .form-element__label {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 140%;
+      color: var(--color-text-01);
+    }
+  }
+
+  // Controls: 검색,필터,새로고침
+  &__controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    align-items: center;
+    gap: 0.625rem;
+    height: 100%;
+  }
+  &__control {
+    display: inline-flex;
+    margin-left: .25rem;
+  }
+
+  // Mete
+  &__meta {
+    @include font-title-02-m;
+    color: var(--color-text-01);
+  }
+}
+
+.item-count {
+  em {
+    font-weight: 700;
+    color: var(--color-blue-06);
+  }
+}
+
+.toggle-snb {
+  width: 40px;
+  height: 40px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-image: url('../images/icons/menu_close_off.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: 0.3s;
+
+  &:hover {
+    background-image: url('../images/icons/menu_close_on.svg');
+  }
+}
+
+.toggle-snb.closed {
+  background-image: url('../images/icons/menu_open_off.svg');
+  transition: 0.3s;
+
+  &:hover {
+    background-image: url('../images/icons/menu_open_on.svg');
+  }
+}

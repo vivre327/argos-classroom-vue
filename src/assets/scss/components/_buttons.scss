@@ -1,0 +1,264 @@
+/*----------------------
+  Button
+----------------------*/
+.button {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  line-height: 150%;
+  // 사이즈
+  @include button-size(0.4375rem 1.25rem, 1rem, 0.5rem); // padding, font, border-radius
+  // 스타일
+  @include button-style (transparent, transparent, currentColor, transparent, transparent, var(--color-blue-06));
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;  // 기본 스타일 제거
+  white-space: normal;        // 기본 텍스트 흐름 유지
+  -webkit-user-select: none;  // 웹킷 브라우저에서 텍스트 선택 비활성화
+  -moz-user-select: none;     // Firefox 브라우저에서 텍스트 선택 비활성화
+  -ms-user-select: none;      // Internet Explorer/Edge에서 텍스트 선택 비활성화
+  user-select: none;          // 표준 브라우저에서 텍스트 선택 비활성화
+  text-decoration: none;
+  // transition 시작
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  // button sizing
+  &_small {
+    min-width: 180px;
+    @include button-size(0.375rem 1rem, 0.8125rem, 0.5rem); // ($padding, $font-size, $border-radius) 
+  }
+
+  &_large {
+    min-width: 180px;
+    @include button-size(0.75rem 1.5rem, 1rem, 0.5rem);
+  }
+
+  &_x-large {
+    min-width: 180px;
+    @include button-size(1.25rem 1.5rem, 1rem, 0.5rem);
+  }
+
+  // button variations
+  &_primary {
+    font-weight: 700;
+    @include button-style (var(--color-blue-06), transparent, var(--color-white), var(--color-blue-08), transparent , var(--color-white));
+  }
+
+  &_secondary {
+    font-weight: 700;
+    @include button-style (var(--color-blue-04), transparent, var(--color-white), var(--color-blue-08), transparent , var(--color-white));
+  }
+
+  &_destructive {
+    @include button-style (var(--color-red), transparent, var(--color-white), var(--color-red), transparent , var(--color-white));
+  }
+
+  // Outline Buttons
+  &_outline {
+    font-weight: 700;
+    @include button-style (transparent, var(--color-gray-04), var(--color-gray-07), transparent, var(--color-blue-08), var(--color-blue-08));
+
+
+    &-primary {
+      font-weight: 700;
+      @include button-style (var(--color-white), var(--color-blue-06), var(--color-blue-06), var(--color-white), var(--color-blue-08) , var(--color-blue-08));
+    }
+
+    &-secondary {
+      font-weight: 700;
+      @include button-style (var(--color-white), var(--color-blue-04), var(--color-blue-04), var(--color-white), var(--color-blue-08) , var(--color-blue-08));
+    }
+  }
+
+  &:disabled,
+  &[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-gray-05);
+    // cursor: not-allowed;
+    cursor: default;
+  }
+
+  /*----------------------
+    Icon Buttons
+  ----------------------*/
+  &_icon {
+    padding: 0;
+    line-height: 1;
+    vertical-align: middle;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+
+    // 아이콘 테두리
+    &-border {
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 1;
+      vertical-align: middle;
+      -webkit-transition: border .15s linear;
+      transition: border .15s linear;
+      // border: 1px solid currentColor;
+      border-radius: 999px;
+      .button__icon {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+
+    // 아이콘 버튼의 사이즈
+    &-xx-small {
+      // 16px
+      width: 1rem;
+      height: 1rem;
+    }
+    &-x-small {
+      // 20px
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    &-small {
+      // 24px
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    &-large {
+      // 40px
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+
+  &__icon {
+    // 32px
+    width: 2rem;
+    height: 2rem;
+  }
+
+  // button with icon
+  .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /*----------------------
+    Button toolbar
+  ----------------------*/
+  &_tool {
+    flex-direction: column;
+    gap: 4px;
+    color: var(--color-gray-07);
+  }
+
+  .icon-bg {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.3s ease;
+
+    &.myshare {
+      background-image: url('../images/icons/myshare_off.svg');
+    }
+
+    &.mobile {
+      background-image: url('../images/icons/mobile_off.svg');
+    }
+    
+    &.link {
+      background-image: url('../images/icons/link_off.svg');
+    }
+    
+    &.file {
+      background-image: url('../images/icons/file_off.svg');
+    }
+    
+    &.lock {
+      background-image: url('../images/icons/lock_off.svg');
+    }
+    
+    &.user_edit {
+      background-image: url('../images/icons/user_edit_off.svg');
+    }
+    
+    &.pin {
+      background-image: url('../images/icons/pin_off.svg');
+    }
+    
+    &.message {
+      background-image: url('../images/icons/message_off.svg');
+    }
+    
+    &.maximize {
+      background-image: url('../images/icons/maximize_off.svg');
+    }
+
+  }
+
+  &:hover,
+  &:focus {
+    .btn-text {
+      color: var(--color-blue-06);
+    }
+
+    .myshare {
+      background-image: url('../images/icons/myshare_on.svg');
+    }
+
+    .mobile {
+      background-image: url('../images/icons/mobile_on.svg');
+    }
+  
+    .link {
+      background-image: url('../images/icons/link_on.svg');
+    }
+  
+    .file {
+      background-image: url('../images/icons/file_on.svg');
+    }
+  
+    .lock {
+      background-image: url('../images/icons/lock_on.svg');
+    }
+  
+    .user_edit {
+      background-image: url('../images/icons/user_edit_on.svg');
+    }
+  
+    .pin {
+      background-image: url('../images/icons/pin_on.svg');
+    }
+  
+    .message {
+      background-image: url('../images/icons/message_on.svg');
+    }
+  
+    .maximize {
+      background-image: url('../images/icons/maximize_on.svg');
+    }
+  }
+}
+
+.btn-text {
+  @include font-body-01-m;
+  color: var(--color-text-03);
+  transition: 0.15s ease;
+}
+
+/*----------------------
+  Button Group
+----------------------*/
+.btn-group {
+  display: inline-flex;
+}
