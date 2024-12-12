@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = defineConfig({
   // GitHub Pages 배포를 위한 publicPath 설정 추가
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/argos-classroom-style/'  // GitHub 저장소 이름으로 변경하세요
+    ? '/argos-classroom-vue/'  // GitHub 저장소 이름으로 변경하세요
     : '/',
     
   transpileDependencies: true,
