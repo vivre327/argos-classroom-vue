@@ -1,0 +1,463 @@
+/*----------------------
+  Table
+----------------------*/
+.table-container {
+  height: 100%;
+  padding: 24px var(--layout-padding);
+  overflow-y: auto;
+}
+.table-responsive {
+  // max-width: 100%;
+  height: fit-content;
+  max-width: calc(100vw - var(--layout-padding)*2);
+  margin-inline: auto;
+  overflow-x: auto;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  // min-width: 1180px;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: var(--color-white);
+}
+
+th,
+td {
+  padding: 1.25rem;
+  text-align: center;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+td {
+
+  /* 더보기 버튼 */
+  .button {
+    .icon-bg {
+      width: 100%;
+      height: 100%;
+    }
+    .more_circle {
+      background-image: url('@/assets/images/icons/more_circle_default.svg');
+    }
+    
+    &:hover,
+    &.active {
+      .more_circle {
+        background-image: url('@/assets/images/icons/more_circle_actived.svg');
+      }
+    }
+  }
+}
+
+thead {
+  th {
+    background-color: #EEF1F8;
+    color: var(--color-text-01);
+    @include font-title-01-b;
+
+    &:first-child {
+      border-radius: var(--radius-2) 0 0 var(--radius-2);
+    }
+    &:last-child {
+      border-radius: 0 var(--radius-2) var(--radius-2) 0;
+    }
+  }
+}
+
+tbody {
+  th, td {
+    padding: 0.625rem 1.25rem;
+  }
+  th,
+  td {
+    border-bottom: 1px solid var(--color-gray-03);
+    color: var(--color-text-03);
+    @include font-body-02-m;
+    line-height: 24px;
+    vertical-align: middle;
+  }
+}
+
+.flex-cell {
+  padding-right: 74px;
+  position: relative;
+  gap: 16px;
+  @include flex-start;
+
+  .truncate {
+    margin-right: 8px;
+    text-align: left;
+  }
+  .badge {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
+.action-cell {
+  display: inline-block;
+  max-width: 24px;
+  position: relative;
+
+  .context {
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 2;
+  }
+}
+
+/*----------------------
+  History Table
+----------------------*/
+.modal-content.history {
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+  .table-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+.tb-history {
+
+  th {
+    line-height: 24px;
+
+    .button {
+      color: var(--color-blue-06);
+      transform: translateY(-1px);
+    }
+  }
+  td {
+    padding: 14px 12px;
+
+    &:nth-of-type(7),
+    &:nth-of-type(8) {
+      @include font-caption-02-m
+    }
+  }
+  td.panel-td {
+    padding: 0;
+    border: 0;
+  }
+  .button_text {
+    color: var(--color-blue-06);
+  }
+}
+
+.panel-td {
+  border: 0;
+}
+
+.panel-area {
+  display: block;
+  background-color: var(--color-gray-02);
+  border-bottom: 1px solid var(--color-gray-03);
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.panel-cont {
+  padding: 20px 32px;
+  white-space: pre-line;
+  text-align: left;
+
+  h6 {
+    margin-bottom: 8px;
+    color: var(--color-text-01);
+    @include font-title-01-b;
+  }
+}
+
+.arrow {
+  width: 1rem;
+  height: 1rem;
+  background-image: url('@/assets/images/icons/arrow_down_16.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: scale(1, -1);
+
+  &.open {
+    transform: scale(1, 1);
+  }
+}
+
+.button_icon.sort {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 4px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: scale(1, -1);
+  
+  &.is-desc {
+    background-image: url('@/assets/images/icons/sort_desc.svg');
+  }
+  &.is-asc {
+    background-image: url('@/assets/images/icons/sort_asc.svg');
+  }
+}
+
+.icon-bar {
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background-image: url('@/assets/images/icons/rectangle.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translateY(-200%);
+}
+
+td.no-result {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--color-text-03);
+  @include font-body-02-m;
+}
+
+/*----------------------
+  Tool Bar Table
+----------------------*/
+.tool-table-container {
+  margin-top: 24px;
+  // max-height: 358px;
+  // overflow-y: auto;
+}
+.tb-tool {
+  table-layout: fixed;
+  width: 100%;
+  scrollbar-gutter: stable; /* 스크롤바 공간을 미리 확보 */
+  margin-bottom: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-black);
+
+  caption {
+    text-align: left;
+    color: var(--color-text-01);
+    @include font-title-01-b;
+    line-height: 54px;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+    max-height: 230px;
+    overflow-y: auto;
+
+    &:has(.is-error) {
+      max-height: 258px;
+    }
+  }
+
+  /* 테이블 헤더는 여전히 고정되도록 설정 */
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tr:not(.edit) {
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: var(--color-gray-02);
+      .actions {
+        opacity: 1;
+      }
+    }
+  }
+
+  td {
+    padding: 14px 16px;
+    text-align: left;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+
+    &:nth-child(1) {
+      width: 274px;
+    }
+    
+    &:nth-child(2) {
+      padding-left: 0;
+    }
+
+    .input[readonly] {
+      height: fit-content;
+      min-height: 0;
+      border: 0;
+      background-color: transparent;
+      color: var(--color-text-03);
+      @include font-body-01-m;
+    }
+  
+  }
+
+  .btn-area {
+    flex-wrap: nowrap;
+  }
+
+  .actions {
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    gap: 10px;
+    color: var(--color-gray-07);
+  }
+
+  .active {
+    background-color: var(--color-gray-02);
+    .actions {
+      opacity: 1;
+    }
+  }
+}
+
+td:has(.is-error) {
+  + td {
+    .btn-area {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+
+/* 미디어 쿼리: 1280px 이하에서 조정 */
+@media (width < 1280px) {
+  table:not(.tb-history):not(.tb-tool) {
+    width: 1760px;
+  }
+}
+
+[data-cell]:not([data-cell="action"]) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/*----------------------
+  Pagination
+----------------------*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  // pagination-list
+  &-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  // pagination-item
+  &-item {
+    margin: 0 2px;
+  }
+
+  // pagination-button
+  &-button {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border: 0;
+    background-color: var(--color-white);
+    color: var(--color-text-01);
+    text-decoration: none;
+    border-radius: var(--radius-circle);
+    cursor: pointer;
+    // 배경이미지
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    border: none;
+    cursor: pointer;
+    @include font-caption-02-m;
+    
+    &:hover,
+    &:focus {
+      color: var(--color-blue-06);
+      @include font-caption-02-b;
+    }
+    
+    // current
+    &.current {
+      background-color: var(--color-blue-06);  
+      color: var(--color-white);
+    }
+    
+    
+    // 이동 버튼
+    &.button-first,
+    &.button-prev,
+    &.button-next,
+    &.button-last {
+      border: 1px solid var(--color-blue-06);
+      background-color: transparent;
+    }
+    
+    // disabled
+    &:disabled {
+      border: 1px solid var(--color-gray-04);
+      pointer-events: none;
+    }
+
+    &.button-prev,
+    &.button-next {
+      background-size: 16px;
+    }
+  
+    // 줄임표 버튼
+    &.button-ellipsis {
+      border-radius: var(--radius-2);
+    
+      span {
+        color: var(--color-text-01); 
+        @include font-caption-02-m;
+      }
+    }
+  }
+}
+
+
+// 이동 버튼 SVG 파일명을 매핑 (일반 상태와 disabled 상태)
+$pagination-icons: (
+  'first': ('normal': 'first.svg', 'disabled': 'first_disabled.svg'),
+  'prev': ('normal': 'prev.svg', 'disabled': 'prev_disabled.svg'),
+  'next': ('normal': 'next.svg', 'disabled': 'next_disabled.svg'),
+  'last': ('normal': 'last.svg', 'disabled': 'last_disabled.svg')
+);
+
+// 이동 버튼의 배경 이미지 적용
+@each $type, $icons in $pagination-icons {
+  .button-#{$type} {
+    background-image: url('@/assets/images/icons/#{map-get($icons, "normal")}');
+    
+    &:disabled {
+      background-image: url('@/assets/images/icons/#{map-get($icons, "disabled")}');
+    }
+  }
+}

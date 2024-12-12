@@ -5,114 +5,717 @@
   display: grid;
   grid-gap: 22px 14px;
   overflow-y: visible;
+  overflow-x: hidden;
+  flex: 1;
+  align-items: start;
+  grid-auto-rows: min-content;
+  padding: 28px var(--layout-padding) 32px;
+  position: relative;
+  transition: grid-gap 0.3s ease;
+
+  // 카드아이템 크게보기시 추가 (24.10.23 임시 추가)
+  &.has-full-item {
+    grid-template-columns: 1fr; // 단일 컬럼으로 변경
+    grid-gap: 0;
+  }
+}
+
+.snb.lg ~ .main-content .cards-container {
+  display: flex;
+  align-items: center;
+  grid-gap: 0 !important;
+  padding-top: 40px;
+  padding-bottom: 36px;
   overflow-x: auto;
-  flex: 1; /* 남은 공간을 모두 차지 */
-  align-items: start; /* 그리드 아이템이 셀 상단에 위치하도록 */
-  grid-auto-rows: min-content; /* 각 행의 높이를 카드 내용에 맞춤 */
-  padding: 28px 3.542vw 32px;
+  overflow-y: hidden;
+
+  /* scrollbar sizing */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(20, 20, 38, 0.15);
+
+    &:hover {
+      background: rgba(20, 20, 38, 0.2);
+    }
+  }
+
+  /* 하단툴바가 없을 때 */
+  &:last-child {
+    align-items: start;
+  }
+}
+
+// 공통 스타일 정의
+%state-common {
+  .video-wrapper {
+    background-color: var(--bg-blue);
+  }
+  video {
+    visibility: hidden;
+  }
+  .video-wrapper::before {
+    content: "";
+    display: inline-block;
+    aspect-ratio: 16/9;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* 카드 아이템 스타일링 */
 .card-item {
   width: 100%;
-  min-width: 167px; 
-  aspect-ratio: 280 / 187; /* 카드의 비율 */
-  border-radius: var(--radius-2);
+  min-width: 167px;
+  aspect-ratio: 280 / 235; /* 카드의 비율 */
+  border-radius: var(--radius-3);
   box-sizing: border-box;
-  // border: 4px solid #fff;
-  transition: 0.3s ease;
-  background-color: var(--color-black);
-  overflow: hidden; /* 콘텐츠가 카드 영역을 넘어가지 않도록 설정 */
+  box-shadow: 4px 4px 20px 0px #00000014;
+  transition: 0.2s ease;
   position: relative;
 
   video {
     width: 100%;
     height: 100%;
   }
-  video[poster] { 
+  video[poster] {
     /* 포스터 이미지의 크기를 비디오 영상에 꽉차도록 */
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
   }
 
-  /* active */
-  &:hover,
-  &:focus,
-  &.active {
-    box-shadow: 0 0 0 4px var(--color-yellow);
-
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.1 );
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-
-  &:hover,
-  &:focus-within {
-    box-shadow: 0 0 0 4px var(--color-yellow);
-
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.1 );
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .card-control {
+  &.focus {
+    box-shadow: 0 0 0 3px var(--color-badge-tomato);
+    .video-wrapper::after {
       opacity: 1;
     }
   }
+
+  &.active {
+    box-shadow: 0 0 0 3px var(--color-blue-06);
+    .video-wrapper::after {
+      opacity: 1;
+    }
+    .card-meta {
+      background-color: var(--color-blue-01);
+    }
+  }
+
+  &:hover,
+  &.open {
+    .video-wrapper::after {
+      opacity: 1;
+    }
+    .card-control button {
+      opacity: 1;
+    }
+    // 상단고정 형제의 더보기에만 scale효과
+    .card-control span.button + button {
+      width: clamp(26px, 1.666vw, 36px); /*32px*/
+      margin-left: clamp(8px, 0.521vw, 12px);
+      opacity: 1;
+    }
+  }
+
+  .no-media {
+    height: calc(100% - 48px);
+    gap: 4px;
+    background-color: var(--gray);
+    border-radius: var(--radius-3) var(--radius-3) 0 0;
+    overflow: hidden;
+    @include flex-center($direction: column);
+
+    .icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    p {
+      color: #6597f1;
+      @include font-caption-02-b;
+    }
+
+    &.gray p {
+      color: #808080;
+    }
+  }
+
+  &.off {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        max-width: 280px;
+        background-image: url("@/assets/images/pic/state_off.png");
+      }
+    }
+  }
+
+  &.connecting {
+    @extend %state-common;
+    .video-wrapper::before {
+      max-width: 280px;
+      background-image: url("@/assets/images/pic/state_connecting.png");
+    }
+  }
+
+  &.not-participating {
+    @extend %state-common;
+    .video-wrapper::before {
+      max-width: 280px;
+      background-image: url("@/assets/images/pic/state_prtcpt.png");
+    }
+  }
+
+  &.locked {
+    @extend %state-common;
+    .video-wrapper::before {
+      max-width: 280px;
+      background-image: url("@/assets/images/pic/state_locked.png");
+    }
+  }
+
+  &.locked.share {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        width: 1280px;
+        height: auto;
+        background-image: url("@/assets/images/pic/state_locked_alt_xl.png");
+      }
+    }
+  }
+
+  &.locked.preview {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        min-width: 420px;
+        height: auto;
+        background-image: url("@/assets/images/pic/state_locked_alt.png");
+      }
+    }
+  }
+
+  &.paused.share {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        width: 1280px;
+        height: auto;
+        background-image: url("@/assets/images/pic/state_paused_xl.png");
+      }
+    }
+  }
+
+  &.paused.preview {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        min-width: 420px;
+        height: auto;
+        background-image: url("@/assets/images/pic/state_paused.png");
+      }
+    }
+  }
+
+  &.off.preview {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        min-width: 420px;
+        height: auto;
+        background-image: url("@/assets/images/pic/state_off_alt.png");
+      }
+    }
+  }
+
+  &.no-share {
+    @extend %state-common;
+    .video-wrapper {
+      background-color: var(--color-gray-03);
+      &::before {
+        background-image: url("@/assets/images/pic/state_noshare_xl.png");
+      }
+    }
+  }
+
+  // 학생화면 미리보기
+  &.preview {
+    width: 100%;
+    min-width: initial;
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
+    transition: none;
+
+    .video-wrapper {
+      border-radius: 0;
+    }
+
+    .video-wrapper::after {
+      content: none;
+    }
+
+    .video-wrapper::before {
+      max-width: initial;
+    }
+
+    .name {
+      border-radius: 0 var(--radius-2) 0 0;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  // 카드아이템 선생님 화면 공유
+  &.share {
+    // grid-column: 1 / -1;
+    // grid-row: 1 / -1;
+    aspect-ratio: 16 / 9;
+    flex: 1;
+    width: 100%;
+    height: calc(100vh - 260px);
+    transition: none;
+    z-index: 1;
+
+    .video-wrapper {
+      border-radius: 24px;
+    }
+
+    .video-wrapper::after {
+      content: none;
+    }
+
+    .video-wrapper::before {
+      width: 1280px;
+      height: auto;
+      max-width: initial;
+    }
+
+    .name {
+      // min-width: calc(82px + clamp(130px, 6.25vw, 130px));
+      padding: clamp(14px, 0.834vw, 16px) clamp(18px, 1.042vw, 20px);
+      font-size: clamp(16px, 0.938vw, 18px);
+      border-radius: 0 var(--radius-4) 0 24px;
+      background-color: rgba(0, 0, 0, 0.7);
+      @include font-title-02-b;
+    }
+  }
+
+  // 카드아이템 크게보기 (24.10.23 임시 추가)
+  &.full {
+    grid-column: 1 / -1; // 전체 열 차지
+    grid-row: 1 / -1; // 전체 행 차지
+    aspect-ratio: auto;
+    min-height: calc(100vh - 304px);
+    border-radius: 0;
+    z-index: 1;
+
+    // 애니메이션
+    animation: expandInGrid 0.3s ease forwards;
+  }
 }
 
-.card-controls {
-  @include flex-space-between($direction: column);
+// 크게보기 애니메이션 (24.10.23 임시 추가)
+@keyframes expandInGrid {
+  from {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// 크게보기 모드일 때 다른 카드 숨기기 (24.10.23 임시 추가)
+.has-full-item .card-item:not(.full) {
+  display: none;
+}
+
+.video-wrapper {
+  width: 100%;
+  height: calc(100% - 48px);
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--color-white);
   z-index: 2;
+  border-radius: var(--radius-3) var(--radius-3) 0 0;
+  overflow: hidden;
+  background-color: var(--color-black);
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: 0.2s;
+  }
+}
+
+// 상단고정 형제의 더보기에만 scale효과
+.card-item:hover .card-control span.button + button {
+  width: clamp(26px, 1.666vw, 36px);
+  margin-left: clamp(8px, 0.521vw, 12px);
+  opacity: 1;
+  transition: 0.25s ease;
+}
+
+.card-item:hover .card-control button {
+  opacity: 1;
 }
 
 .card-control {
-  width: 100%;
-  gap: 10px;
-  padding: 13px;
-  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  color: var(--color-white);
+  z-index: 3;
+  display: inline-flex;
+  padding: clamp(10px, 0.521vw, 14px);
+  opacity: 1;
   transition: 0.2s;
 
-  button {
+  .button {
+    width: clamp(26px, 1.666vw, 36px);
+    height: auto;
+    aspect-ratio: 1/1;
+    margin-left: clamp(8px, 0.521vw, 12px);
+
+    &:hover,
     &.active {
-      color: var(--color-blue-06);
+      // 색상 반전
+      --rect-fill: #246beb;
+      --path-fill: white;
+    }
+  }
+
+  // 더보기 숨김
+  button.button {
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  // 상단고정 형제의 더보기 숨김
+  span.button + button.button {
+    width: 0;
+    margin-left: 0;
+    transition: 0.08s ease-out;
+  }
+
+  span.button {
+    cursor: default;
+
+    &:hover {
+      color: var(--color-white);
     }
   }
 }
 
 .card-meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  max-width: 100%;
   width: 100%;
-  gap: 8px;
+  min-height: 48px;
+  padding-right: clamp(14px, 0.834vw, 18px);
+  background-color: var(--bg-white);
+  border-radius: 0 0 var(--radius-3) var(--radius-3);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+
+  .badge {
+    padding: 0 clamp(8px, 0.416vw, 10px);
+    font-size: clamp(11px, 0.677vw, 15px);
+    line-height: clamp(22px, 1.25vw, 26px);
+  }
 }
 
 .name {
-  min-width: 74px;
-  padding: 8px 16px;
+  min-width: calc(42px + clamp(14px, 0.834vw, 18px));
+  margin-right: auto;
+  padding: clamp(6px, 0.417vw, 10px) clamp(14px, 0.834vw, 18px);
   text-align: center;
-  color: var(--color-white);
-  border-radius: 0 var( --radius-1) 0 0;
-  background-color: rgba($color: #000000, $alpha: 0.8);
+  color: var(--color-gray-08);
   @include font-title-01-b;
-  @include truncate(98px);
+  font-size: 1.0625rem;
+  font-size: clamp(14px, 0.834vw, 16px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/*----------------------
+  콘솔 Class Card Item
+----------------------*/
+.class-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-content: start;
+  justify-content: start;
+  gap: 30px 16px;
+  max-width: 100vw;
+  max-height: 100%;
+  height: 100%;
+  padding: 16px var(--layout-padding) 24px;
+  overflow-y: auto;
+}
+
+/* 데이터가 없는 경우 BG Image */
+.empty-state {
+  background: url("@/assets/images/pic/bg_empty_state.png") no-repeat center;
+  background-size: calc((314 / 1920) * 100vw);
+  background-size: clamp(280px, calc((314 / 1920) * 100vw), 360px);
+  background-position: center 16vh;
+}
+
+/* 1280px 이하에서는 고정된 그리드 너비와 가로 스크롤 처리 */
+@media (max-width: 1279px) {
+  .class-container {
+    //grid-template-columns: repeat(4, 336px); /* 5열을 고정하고 가로 스크롤 발생 */
+    overflow-x: auto;
+  }
+  .class-card {
+    //max-width: 336px;
+  }
+}
+
+.class-card {
+  background-color: var(--bg-white);
+  position: relative;
+  border-radius: var(--radius-4);
+  box-shadow: 4px 4px 20px 0px #00000026;
+  transition: 0.15s ease;
+
+  &.active {
+    box-shadow: 0 0 0 3px var(--color-blue-06);
+  }
+
+  // 입장 가능한 카드의 .clickable
+  &.clickable {
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 0 3px var(--color-blue-06);
+    }
+  }
+
+  &.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 267px;
+    border: 2px dashed #aab0bb;
+    box-shadow: none;
+  }
+
+  .context {
+    top: 100%;
+    right: 0;
+  }
+}
+
+// 입장 가능한 테이블 Row의 .clickable
+.clickable {
+  cursor: pointer;
+}
+
+.card {
+  &-header {
+    min-height: 72px;
+    gap: 4px;
+    padding: 0 20px 0 30px;
+    border-radius: var(--radius-4) var(--radius-4) 0 0;
+    position: relative;
+    background-color: var(--bg-light-blue);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    @include flex-end(column);
+
+    .badge {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+    }
+
+    &.red {
+      background-image: url("@/assets/images/pic/bg_card_red.svg");
+    }
+    
+    &.blue {
+      background-image: url("@/assets/images/pic/bg_card_blue.svg");
+    }
+
+    &.green {
+      background-image: url("@/assets/images/pic/bg_card_green.svg");
+      background-position-x: 18px;
+    }
+
+    &.yellow {
+      background-image: url("@/assets/images/pic/bg_card_yellow.svg");
+    }
+
+    &.badge-red {
+      background-image: url("@/assets/images/pic/bg_card_badge-red.svg");
+    }
+
+    &.violet {
+      background-image: url("@/assets/images/pic/bg_card_violet.svg");
+    }
+    
+    &.turquoise {
+      background-image: url("@/assets/images/pic/bg_card_turquoise.svg");
+    }
+  }
+
+  &-title {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 8px;
+    color: var(--color-text-01);
+    text-align: right;
+    line-height: 100%;
+    letter-spacing: -0.3%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include font-title-03-b;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    // grid-template-rows: repeat(6, minmax(20px, auto));
+    min-height: 157px;
+    padding: 16px;
+    border-radius: 0 0 var(--radius-4) var(--radius-4);
+    box-sizing: border-box;
+    row-gap: 8px;
+
+    p {
+      min-height: 15px;
+      text-align: left;
+      color: var(--color-text-03);
+      @include font-body-01-m;
+      @include text-truncate($lines: 1);
+      line-height: 100%;
+    }
+
+    .button {
+      flex-shrink: 0;
+
+      .icon-bg {
+        width: 100%;
+        height: 100%;
+      }
+      .more_circle {
+        background-image: url("@/assets/images/icons/more_circle_default.svg");
+      }
+
+      &:hover,
+      &.active {
+        .more_circle {
+          background-image: url("@/assets/images/icons/more_circle_actived.svg");
+        }
+      }
+    }
+
+    .teacher,
+    .days,
+    .student {
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 8px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    }
+    .teacher {
+      &::before {
+        background-image: url("@/assets/images/icons/voice.svg");
+      }
+    }
+    .days {
+      &::before {
+        background-image: url("@/assets/images/icons/calendar.svg");
+      }
+    }
+    .student {
+      &::before {
+        background-image: url("@/assets/images/icons/users.svg");
+      }
+    }
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 16px;
+    position: relative;
+
+    .info-main {
+      min-width: 0;
+      min-height: 41px;
+      flex: 1;
+
+      h3 {
+        min-width: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: var(--color-gray-08);
+        @include font-title-05-b;
+        line-height: 100%;
+      }
+
+      p {
+        display: block;
+        min-width: 0;
+        min-height: 14px;
+        margin-top: 8px;
+        white-space: nowrap;
+        color: var(--color-gray-07);
+        @include font-sub-title-02;
+        line-height: 100%;
+      }
+    }
+  }
 }
 
 /*----------------------
@@ -122,24 +725,36 @@
 /* 기본 설정: 화면 너비가 1920px 이상일 때 */
 @media (min-width: 1920px) {
   .cards-container {
-      grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
 /* snb가 열렸을 때 */
+.snb:not(.closed) ~ .main-content .page-header {
+  padding-left: var(--layout-padding-open);
+  padding-right: var(--layout-padding-open);
+}
 .snb:not(.closed) ~ .main-content .cards-container {
   grid-template-columns: repeat(5, 1fr);
+  padding-left: var(--layout-padding-open);
+  padding-right: var(--layout-padding-open);
 }
 
 /* 1280px ~ 1919px일 때 */
 @media (max-width: 1919px) and (min-width: 1280px) {
   .cards-container {
-      grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    overflow-x: hidden;
   }
 
   /* snb가 열렸을 때 */
   .snb:not(.closed) ~ .main-content .cards-container {
-      grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .snb.lg:not(.closed) ~ .main-content .cards-container {
+    overflow-x: auto;
   }
 }
 
@@ -147,8 +762,6 @@
 @media (max-width: 1300px) {
   .snb:not(.closed) ~ .main-content .cards-container {
     grid-gap: 18px 12px;
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }
 
@@ -156,13 +769,16 @@
 @media (max-width: 1279px) {
   .cards-container {
     grid-template-columns: repeat(6, 1fr);
-    overflow-x: auto;
   }
 
   /* snb가 열렸을 때 */
   .snb:not(.closed) ~ .main-content .cards-container {
-      grid-template-columns: repeat(5, 1fr);
-      overflow-x: auto;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .snb:not(.closed) ~ .main-content .card-item.share {
+    width: auto;
+    height: 100%;
   }
 }
 
@@ -177,7 +793,7 @@
 }
 
 @media screen and (min-width: 1920px) {
-    /* 1920 이상이고 snb가 닫혔을 때 : 열 6개 제한 */
+  /* 1920 이상이고 snb가 닫혔을 때 : 열 6개 제한 */
   .auto-fit {
     grid-template-columns: repeat(6, minmax(280px, 1fr)) !important;
   }
@@ -189,85 +805,72 @@
 }
 
 @media screen and (max-width: 1366px) {
-    /* 1366 이하이고 snb가 닫혔을 때 : 열 4개 제한 */
+  /* 1366 이하이고 snb가 닫혔을 때 : 열 4개 제한 */
   .auto-fit {
     grid-template-columns: repeat(4, minmax(280px, 1fr)) !important;
     padding: 28px 3.1vw 32px;
   }
   .page-header {
-    padding: 0 3.1vw 4px;
+    padding: 32px 3.1vw 4px;
   }
 
-    /* 1366 이하이고 snb가 닫혔을 때 : 열 3개 제한 */
+  /* 1366 이하이고 snb가 닫혔을 때 : 열 3개 제한 */
   .snb:not(.closed) ~ .main-content .auto-fit {
     grid-template-columns: repeat(3, minmax(280px, 1fr)) !important;
   }
+
+  // .page-header__row {
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  // }
 }
 
 /*----------------------
-  QR Code :Image 또는 Canvas
+  화면 공유 Card Item
 ----------------------*/
-.code {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  padding: 2.5rem 0;
-  border-radius: 1rem;
-  background-color: var(--color-white);
-  color: var(--color-text-03);
+.share-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열로 고정 */
+  gap: 20px; /* 카드 간의 간격 */
+}
 
-  // QR Code
-  &_qr {
-    display: block;
-    width: 4.5rem;
-    height: 4.5rem;
+.share {
+  /* shaere-item */
+  &-item {
+    border-radius: var(--radius-3);
+    border: 2px solid transparent; /* 기본 투명한 border */
+    overflow: hidden;
+    transition: border-color 0.3s ease; /* 부드러운 전환 효과 */
+
+    &.is-active {
+      border-color: var(--color-blue-06);
+    }
   }
 
-  // Text Code
-  &_text {
+  /* shaere-header */
+  &-header {
+    padding: 16px;
+    background-color: var(--bg-blue);
+
+    .form-element__label {
+      .icon {
+        margin-right: 4px;
+        color: var(--color-gray-07);
+      }
+    }
+  }
+
+  /* shaere-body */
+  &-body {
+    height: 180px; /* 고정된 카드 바디 높이 */
+    background-color: var(--bg-light-blue);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    span {
-      display: block;
-      @include typography(0.9375rem, 500, 150%, -0.3%);
+    video {
+      width: 100%;
+      height: 100%;
     }
-    em {
-      // Heading-01
-      @include typography(1.75rem, 700, 140%, -0.3%);
-      color: var(--color-text-01);
-    }
-  }
-
-  // bg color
-  &--blue {
-    background-color: var(--color-blue-01);
-  }
-
-  // sizing
-  &_small {
-    gap: 1.25rem;
-    padding: 1.25rem 0;
-    border-radius: 0.75rem;
-
-    .code_qr {
-      width: 3.375rem;
-      height: 3.375rem;
-    }
-
-    .code_text {
-      span {
-        font-size: 0.8125rem;
-      }
-      em {
-        // Heading-01
-        font-size: 1.25rem;
-        color: var(--color-text-01);
-      }
-    }
-    
   }
 }

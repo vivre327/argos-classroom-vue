@@ -1,9 +1,11 @@
 <template>
-  <article class="card-item" :class="{'active': isCardActive}" @click="onCardClick">
-    <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
-      <!-- <source :src="videoSource" type="video/mp4" /> -->
-      <source type="video/mp4" />
-    </video>
+  <article class="card-item" :class="{'active': isCardActive}">
+    <div class="video-wrapper" @click="onCardClick">
+      <video height="100%" poster="@/assets/images/temp/video_sample.png" autoplay>
+        <!-- <source :src="videoSource" type="video/mp4" /> -->
+        <source type="video/mp4" />
+      </video>
+    </div>
     <div class="card-controls">
       <div class="card-control flex-end">
         <button class="button button_icon button_icon-x-small" tabindex="0" :class="{'active': isPinActive}" @click="onPinClick">

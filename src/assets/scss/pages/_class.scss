@@ -1,0 +1,144 @@
+#app, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  min-height: calc(100% - 80px);
+  overflow: hidden;
+}
+
+.main-content {
+  height: 100%;
+  overflow-y: auto; /* Y축 스크롤 */
+  overflow-x: hidden;
+  flex: 1; /* 남은 공간을 모두 차지 */
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  position: relative;
+
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+.no-data {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 140px;
+  gap: 1.375rem;
+  @include flex-center($direction: column);
+
+  p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #505050;
+
+    &+.button {
+      margin-top: 2.5rem;
+    }
+  }
+
+  &.with-header {
+    max-height: 100%;
+    padding-bottom: 80px;
+
+    &_multiple {
+      padding-bottom: 137px;
+    }
+  }
+
+  &.blue {
+    max-height: initial;
+    height: 100%;
+    background-color: var(--bg-light-blue);
+    border-top: 1px solid var(--color-gray-01);
+  }
+}
+
+/* Basic Nav의 no-data */
+.snb {
+  .no-data {
+    p {
+      padding-top: 10px;
+      color: var(--color-text-03);
+      @include font-heading-02;
+    }
+  }
+}
+
+/* 수업 종료 화면 */
+.end-content {
+
+  @include flex-center($direction: column);
+
+  /* 수업종료 title */
+  h2 {
+    margin-bottom: 32px;
+    color: var(--color-text-01);
+    @include font-heading-03;
+  }
+
+  /* 수업 정보 */
+  .end-meta {
+    width: 416px;
+    padding: 40px;
+    border-radius: var(--radius-4);
+    background-color: var(--bg-white);
+
+    dl {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0.5rem 0; /* 간격 조절 */
+      
+      dt, dd {
+        margin: 0;
+        padding: 0;
+        @include font-body-02-m;
+      }
+    
+      dt {
+        color: var(--color-text-05-disabled);
+        text-align: left;
+        flex-basis: 30%; /* 제목의 너비를 고정 */
+      }
+    
+      dd {
+        color: var(--color-text-01);
+        text-align: right;
+        flex-basis: 70%; /* 내용의 너비를 고정 */
+        white-space: nowrap; /* 한 줄로 표시 */
+        overflow: hidden; /* 넘치는 텍스트는 숨김 */
+        text-overflow: ellipsis; /* 넘치는 텍스트를 ...로 표시 */
+
+        &.light {
+          color: var(--color-text-03);
+        }
+      }
+    }
+    
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-gray-03); /* 구분선 */
+      margin: 1rem 0;
+    }
+  }
+
+  /* 수업 종료 버튼 */
+  .button_primary {
+    width: 160px;
+    margin-top: 40px;
+  }
+}

@@ -95,7 +95,7 @@ body {
   padding: 3rem 2rem;
 }
 
-.docs-main h2 {
+.docs-main .component-header h2 {
   font-size: 3rem;
   font-weight: 200;
   color: #47546C; /* Primary color */
@@ -153,11 +153,17 @@ h4 + .docs-desc {
   &:last-of-type {
     border-bottom: 1px solid #dee2e6;
   }
+  & > .button {
+    &+.button:not(.checkbox_button):not(.radio_button) {
+      margin-left: 6px;
+    }
+  }
 }
 
 .demo-viewport {
   position: relative;
-  height: 21.25rem;
+  height: fit-content;
+  min-height: 82px;
   padding: 0;
   .global-header_container {
     position: absolute;
@@ -430,18 +436,13 @@ code {
 }
 
 // border-radius token
-.radius-group {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 1fr var(--sds-g-sizing-9);
-  gap: 1rem;
-  margin-top: 20px;
-}
-
 .radius-chip {
-  // width: 100px;
+  width: 8vw;
+  min-width: 140px;
   aspect-ratio: 1/1;
-  display: flex;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -452,6 +453,10 @@ code {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+
+  &.radius-pill {
+    aspect-ratio: 5/1 !important;
+  }
 }
 
 .radius-chip:hover {

@@ -1,57 +1,153 @@
 /*----------------------
   Toast
 ----------------------*/
-.toast_container {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  z-index: 10000;
+.toast-container {
+  display: inline-flex;
+  width: auto;
+  z-index: 30;
   text-align: center;
+  position: fixed;
+  left: 50%;
+
+  // 상단에 나타나는 토스트
+  &.top {
+    top: 75px;
+    --toast-initial-offset: -20px;
+  }
+
+  // 하단에 나타나는 토스트
+  &.bottom {
+    bottom: 80px;
+  }
+
+  // with-snb의 기본 위치
+  &.with-snb {
+    bottom: 100px;
+    left: calc(50% + 200px);
+    // transition: left 0.3s ease;
+  }
+
+  // Basic 토스트
+  &.basic {
+    position: absolute;
+    bottom: 96px;
+  }
+
+}
+// .closed가 있을 때 with-snb 조정
+.closed ~ .with-snb {
+  left: 50%;
 }
 
 .relative {
   position: relative;
 }
 
+
+/* 기준 요소인 모달의 하단에 나타나는 토스트 */
+// .bottom-modal {
+//   position: absolute;
+//   bottom: -23px;
+//   left: 50%;
+//   transform: translateY(-50%);
+//   z-index: 10;
+// }
+
+
 .toast {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  position: relative;
-  color: var(--color-white);
-  background: none;
-  background-color: var(--color-black);
-  border-radius: 0.75rem;
+  // min-width: 21.5rem;
   padding: 1rem 2rem;
-  min-width: 21.5rem;
+  color: var(--color-white);
   text-align: left;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 150%;
-  letter-spacing: -0.003em;
-  
-  em {
-    font-weight: 700;
-    margin-right: 0.25rem;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0,0,0,.8);
+  position: relative;
+  @include flex-center;
+  display: inline-flex;
+  justify-content: space-between;
+  transform: translateX(-50%);
+  @include font-body-02-b;
+
+  .toast-content {
+    line-height: 1;
+    @include flex-center;
+
+    span {
+      white-space: nowrap;
+    }
   }
 
-  // 닫기 버튼이 있는 토스트
-  &_dismissible {
-    min-width: 26rem;
-    justify-content: space-between;
-    
-    .button__icon {
-      color: var(--color-white);
-    }
+  .icon {
+    margin-right: 8px;
+    color: var(--color-green);
+  }
+
+  .button {
+    margin-left: 32px;
+    color: rgba(255,255,255,.5);
   }
 
 }
 
+/*----------------------
+  Alert
+----------------------*/
+.alert-container {
+  display: inline-flex;
+  width: calc(100vw - (var(--layout-padding) * 2));
+  margin: 0 auto;
+  z-index: 20;
+  text-align: center;
+  // position: fixed;
+  left: 50%;
+
+  // 상단에 나타나는 알럿
+  &.top {
+    top: 75px;
+    --toast-initial-offset: -20px;
+  }
+}
+
+.alert {
+  padding: 0.625rem 1rem;
+  color: var(--color-white);
+  text-align: left;
+  border-radius: var(--radius-2);
+  background-color: #5772a3;
+  border: 1px solid var(--color-blue-10);
+  position: relative;
+  @include flex-center;
+  display: inline-flex;
+  flex: 1;
+  justify-content: space-between;
+  // transform: translateX(-50%);
+  @include font-body-02-b;
+
+  .alert-content {
+    line-height: 1;
+    @include flex-center;
+
+    span {
+      white-space: nowrap;
+    }
+
+    small {
+      margin-left: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-white);
+    }
+  }
+
+  .icon {
+    margin-right: 8px;
+    color: var(--color-green);
+  }
+
+  .button {
+    margin-left: 32px;
+    color: rgba(255,255,255,.5);
+  }
+
+}
 

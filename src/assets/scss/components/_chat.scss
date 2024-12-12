@@ -2,9 +2,19 @@
   Chat
 ----------------------*/
 .chat {
+  display: flex;
   height: 100%;
-  padding: 1.25rem; /* 20px */
-  background-color: var(--bg-light-blue);
+  flex-direction: column;
+  background-color: var(--bg-side-menu);
+  --emoji-text-gap: 0.25em; // 이모지와 텍스트 사이 간격을 위한 CSS 변수
+
+  /* Chat Message Area */
+  &-list {
+    flex: 1;
+    // max-height: calc(100% - 368px);
+    padding: 1.25rem 1.25rem; /* 20px 20px 0 */
+    overflow-y: auto;
+  }
 
   /* Chat Message Item */
   &-msg {
@@ -17,21 +27,6 @@
       margin-top: 0;
     }
 
-    /* Chat Message Inbound */
-    &.inbound {
-      justify-content: flex-start;
-    }
-
-    /* Chat Message Outbound */
-    &.outbound {
-      justify-content: flex-end;
-      flex-wrap: wrap-reverse;
-
-      .chat-body {
-        flex-direction: row-reverse;
-      }
-    }
-
     /* Chat Message Event */
     &.log {
       flex-direction: column;
@@ -39,8 +34,8 @@
 
   }
 
-  /* Chat Name */
-  &-name {
+  /* Chat Author */
+  &-author {
     width: 100%;
     margin-bottom: 4px;
     @include font-caption-01-b;
@@ -56,45 +51,97 @@
 
   /* Chat TXT */
   &-txt {
-    display: inline-flex;
+    display: inline-block;
     max-width: 216px;
+    min-height: 43px;
     padding: 10px;
     color: var(--color-text-01);
     @include font-body-01-m;
     word-wrap: break-word;
     word-break: break-word;
-    white-space: break-spaces; /* 공백 표시 */
-    white-space: pre-line; /* Enter 표시 */
-    
-    /* Text Inbound */
-    &.inbound {
-      border-radius: 0 var(--radius-3) var(--radius-3) var(--radius-3);
-      background-color: var(--bg-white);
+    white-space: normal; // 일반적인 줄바꿈 허용
+
+    & > span {
+      display: inline;
+      vertical-align: middle;
     }
 
-    /* Text Outbound */
-    &.outbound {
-      border-radius: var(--radius-3) 0 var(--radius-3) var(--radius-3);
-      background-color: var(--color-blue-02);
+    &> span:not(.emoji) {
+      margin-left: var(--emoji-text-gap);
+    }
+
+    &> span:first-child:not(.emoji) {
+      margin-left: 0;
     }
 
     /* Attachment Image */
     &.image {
-      height: 100px;
+      display: inline-flex;
+      min-height: 100px;
+      max-height: 100px;
       padding: 0;
+      aspect-ratio: 190/100;
       overflow: hidden;
+
+      .file-figure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
     }
 
     /* Attachment file */
     &.file {
+      display: inline-flex;
+      padding: 12px;
       flex-direction: column;
       gap: 4px;
     }
+
+    // 연속된 span 요소들을 하나의 그룹으로 취급
+    &> span:not(.emoji) + .emoji,
+    &> .emoji + .emoji,
+    &> .emoji + span:not(.emoji) {
+      margin-left: 0;
+    }
+  }
+
+  /* 채팅 이모지 */
+  .emoji {
+    display: inline-flex;
+    width: 24px;
+    align-items: center;
+    vertical-align: middle;
+    margin-right: var(--emoji-text-gap);
+  }
+
+  .emoji + .emoji {
+    margin-left: 0;
+    margin-right: var(--emoji-text-gap);
+  }
+
+  .emoji + span:not(.emoji) {
+    margin-left: 0;
+  }
+
+  span:not(.emoji) + .emoji {
+    margin-left: var(--emoji-text-gap);
   }
 
   /* Chat Meta */
   &-meta {
     @include font-label-01-m;
+    white-space: nowrap;
     color: var(--color-text-05-disabled);
   }
 
@@ -103,10 +150,10 @@
     width: 100%;
     padding: 4px 20px;
     @include font-caption-01-m;
-    color: var(--color-text-01);
+    color: var(--color-text-03);
     text-align: center;
     border-radius: var(--radius-pill);
-    background-color: var(--color-yellow);
+    background-color: var(--color-gray-03);
   }
 
   /* Read Marker */
@@ -117,7 +164,7 @@
     gap: 8px;
     width: 100%;
     @include font-caption-01-m;
-    color: var(--color-text-01);
+    color: var(--color-text-03);
     text-align: center;
     white-space: nowrap;
 
@@ -131,6 +178,173 @@
       background-color: var(--color-gray-04);
     }
   }
+
+  /* Chat Input */
+  &-input {
+    padding: 0 1.25rem 1.25rem; /* 48px 20px 20px */
+    color: var(--color-gray-07);
+
+    &-box {
+      padding: 1rem; /* 16px */
+      border-radius: var(--radius-4);
+      background-color: var(--bg-white);
+    }
+
+    /* Input Area */
+    .input-area {
+      display: flex;
+      gap: 8px;
+
+      .form-element {
+        flex: 1;
+      }
+    }
+
+    /* Actions Area */
+    .actions-area {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input {
+      max-height: 112px;
+      height: 112px;
+      overflow-y: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      outline: none;
+      overflow-wrap: break-word;
+      white-space: break-spaces !important;
+      text-align: left;
+      word-break: break-word;
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      user-select: text;
+      resize: none;
+      cursor: text;
+      @include font-body-02-m;
+
+      &:focus {
+        border: 0;
+        outline: 0;
+      }
+
+      // 입력창내의 텍스트와 이모지
+      & > span {
+        display: inline;
+        vertical-align: middle;
+      }
+  
+      &> span:not(.emoji) {
+        margin-left: var(--emoji-text-gap);
+      }
+  
+      &> span:first-child:not(.emoji) {
+        margin-left: 0;
+      }
+
+      .emoji {
+        display: inline-block;
+        width: 24px;
+        align-items: center;
+        vertical-align: middle;
+        line-height: 66px;
+        margin-right: var(--emoji-text-gap);
+      }
+
+      .emoji + .emoji {
+        margin-left: 0;
+        margin-right: var(--emoji-text-gap);
+      }
+
+      .emoji + span:not(.emoji) {
+        margin-left: 0;
+      }
+
+      span:not(.emoji) + .emoji {
+        margin-left: var(--emoji-text-gap);
+      }
+    }
+
+    /* 채팅 입력창(Div) 스크롤바에 대한 커서 설정 */
+    .input::-webkit-scrollbar,
+    .input::-webkit-scrollbar-thumb,
+    .input::-webkit-scrollbar-track {
+      cursor: default;
+    }
+  }
+
+  // 채팅 입력창(Div)이 비어있을때 placeholder
+  [contenteditable=true]:empty:before {
+    content: attr(data-placeholder);
+    color: var(--color-text-05-disabled);
+  }
+
+  .file {
+    &-item {
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    &-info {
+      width: 100%;
+      gap: 8px;
+      @include flex-center;
+    }
+  
+    &-figure {
+      display: flex;
+    }
+  
+    &-name {
+      flex: 1;
+      @include font-body-01-m;
+      color: var(--color-text-03);
+    }
+  
+    &-icon {
+      width: 32px;
+      height: 32px;
+      background-color: #fff;
+    }
+  
+    &-actions {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      text-align: right;
+      gap: 8px;
+    }
+  }
+}
+
+/* Chat Message Inbound */
+.inbound {
+  justify-content: flex-start;
+
+  /* Text Inbound */
+  .chat-txt {
+    border-radius: 0 var(--radius-4) var(--radius-4) var(--radius-4);
+    background-color: var(--bg-white);
+  }
+}
+
+/* Chat Message Outbound */
+.outbound {
+  justify-content: flex-end;
+  flex-wrap: wrap-reverse;
+
+  .chat-body {
+    flex-direction: row-reverse;
+  }
+
+  /* Text Outbound */
+  .chat-txt {
+    border-radius: var(--radius-4) 0 var(--radius-4) var(--radius-4);
+    background-color: var(--color-blue-02);
+  }
 }
 
 .chat-msg.inbound +.chat-msg.inbound, 
@@ -138,35 +352,48 @@
   margin-top: 0.5rem;
 }
 
-.file {
+/* empty image */
+.chat-empty {
 
-  &-figure {
-    display: flex;
-    height: 100%;
-  }
+  flex: 1;
+  text-align: center;
+  gap: 8px;
+  @include flex-center($direction: column);
 
-  &-tit {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    @include font-body-02-m;
-    color: var(--color-text-03);
-  }
-
-  &-icon {
+  .pic-empty {
     display: block;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background-color: #fff;
+    width: clamp(80px,4.167vw,100px);
+    aspect-ratio: 1/1;
+    background-image: url('@/assets/images/pic/pic_bubble.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
-  &-actions {
-    display: flex;
-    justify-content: flex-end;
+  p {
+    color: var(--color-text-03);
+    @include font-body-02-m;
+  }
+}
 
-    .button {
-      padding: 0;
+/* emoji 이모티콘 */
+.emoji-list {
+  gap: 8px;
+  @include flex-center;
+}
+.emoji-item {
+
+  .button_icon {
+    width: 30px;
+    height: 30px;
+
+    img {
+      display: block;
+      max-width: 100%;
     }
   }
 }

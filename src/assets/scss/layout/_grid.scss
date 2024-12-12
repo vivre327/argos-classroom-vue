@@ -7,3 +7,91 @@
 .grid__item {
   flex: 1 1 calc(33.333% - 1rem);
 }
+
+// 풀스크린 공통 레이아웃 스타일
+.fullscreen {
+  display: grid;
+  place-items: center; // 수평수직 중앙 정렬
+  height: 100%; // 화면 전체 높이
+  width: 100vw; // 화면 전체 너비
+  box-sizing: border-box; // 패딩 포함한 크기 계산
+  background-color: var(--color-white);
+  text-align: center;
+
+  
+  h3 {
+    color: var(--color-gray-08);
+    @include font-title-03-b;
+  }
+  
+  .button {
+    min-width: 160px;
+    margin-top: 40px;
+  }
+}
+
+.error-visual {
+  height: 200px;
+  margin-bottom: 24px;
+  background-image: url('@/assets/images/pic/pic_error_common.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &.network {
+    margin-bottom: 0;
+    background-image: url('@/assets/images/pic/pic_error_network.png');
+  }
+
+  &.license {
+    background-image: url('@/assets/images/pic/pic_license_end.png');
+  }
+}
+
+.error-content {
+  p {
+    margin-top: 8px;
+    color: var(--color-gray-07);
+  }
+  b {
+    font-weight: 700; 
+  }
+}
+
+/*----------------------
+  QR Code : 새창
+----------------------*/
+.code-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 40px 80px;
+  padding: clamp(24px, 1.958vw, 40px) clamp(48px, 3.917vw, 80px);
+
+  h3 {
+    font-size: 56px;
+    font-size: clamp(36px, 2.917vw, 56px);
+  }
+
+  h3 + p {
+    margin-top: 26px;
+    margin-top: clamp(16px, 1.292vw, 26px);
+    font-size: 40px;
+    font-size: clamp(24px, 1.958vw, 40px);
+    color: var(--color-text-03);
+  }
+  
+  .code {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+}

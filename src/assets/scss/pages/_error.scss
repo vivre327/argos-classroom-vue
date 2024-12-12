@@ -1,7 +1,7 @@
 .error {  
   &-page {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     @include flex-center($direction: column);
     background-color: var(--bg-blue);
     text-align: center

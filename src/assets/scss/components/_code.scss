@@ -1,0 +1,134 @@
+/*----------------------
+  QR Code
+----------------------*/
+.code {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-4);
+  background-color: var(--color-white);
+  color: var(--color-text-03);
+
+  /* QR Code */
+  &_qr {
+    display: block;
+    width: 10rem;
+    height: 10rem;
+  }
+
+  /* code_text */
+  &_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+    border: 1px solid var(--color-line-divider);
+    border-radius: var(--radius-2);
+
+    span {
+      display: block;
+      @include font-body-01-m;
+    }
+    em {
+      color: var(--color-text-01);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 100%;
+    }
+  }
+
+  /* bg color */
+  &-blue {
+    background-color: var(--color-blue-01);
+  }
+
+  /* Small Size */
+  &_small {
+    gap: 1.5rem;
+    padding: 1.875rem;
+    border-radius: var(--radius-3);
+    border: 1px solid var(--color-line-divider);
+
+    .code_qr {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    .code_text {
+      padding: 2px 0;
+      span {
+        @include font-caption-01-m;
+      }
+      em {
+        color: var(--color-text-01);
+        @include font-title-03-b;
+      }
+    }
+  }
+
+  /* Large Size */
+  &_large {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    height: 100%;
+    padding: 12px 0 4px;
+    border-radius: 0;
+
+    .left {
+      padding: 0 110px;
+      padding: 0 clamp(80px, 5.729vw, 110px);
+    }
+    
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+  
+      &::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 100%;
+        background-color: var(--color-line-divider);
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .code_qr_box {
+      width: 706px;
+      width: clamp(500px, 36.771vw, 706px);
+      padding: 48px;
+      padding: clamp(28px, 2.5vw, 48px);
+      border-radius: 24px;
+      border: 1px solid #E6E6E6;
+      background-color: transparent;
+      
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .code_text {
+      border-radius: 24px;
+      span {
+        @include font-heading-04;
+      }
+      em {
+        font-size: 6.25rem;
+        font-weight: 500;
+        line-height: 140%;
+        letter-spacing: -0.003em;
+        text-align: center;        
+      }
+    }
+  }
+}

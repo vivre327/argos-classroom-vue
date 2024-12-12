@@ -96,6 +96,10 @@
   @include font-caption-02-m;
 }
 
+.caption-02-r {
+  @include font-caption-02-r;
+}
+
 .caption-01-b {
   @include font-caption-01-b;
 }
@@ -110,4 +114,40 @@
 
 .label-01-m {
   @include font-label-01-m;
+}
+
+.title-03-b {
+  @include font-title-03-b;
+}
+
+.title-04-b {
+  @include font-title-04-b;
+}
+
+.title-05-b {
+  @include font-title-05-b;
+}
+
+.title-06-b {
+  @include font-title-06-b;
+}
+
+.sub-title-02 {
+  @include font-sub-title-02;
+}
+
+.sub-title-03 {
+  @include font-sub-title-03;
+}
+
+.title-00-m {
+  @include font-title-00-m;
+}
+
+.title-00-b {
+  @include font-title-00-b;
+}
+
+.timer {
+  @include font-timer;
 }

@@ -41,13 +41,65 @@
   --bg-white: #FFFFFF;
   --bg-blue: #DDEBFF;
   --bg-light-blue: #E7EDF6;
+  --bg-side-menu: #F1F3F5;
+  --gray: #F4F4F5;
 
   /* System Color */
-  --color-red: #da1218;
-  --color-badge-red: #ee0000;
-  --color-yellow: #f0d400;
+  --color-badge-red: #DA0000;
+  --color-red: #DA1E28;
+  --color-yellow: #FFD400;
+  --color-green: #008A1E;
+
+  /* Mark Color */
+  --color-mark-badge-red: #FFECFA;
+  --color-mark-red: #FFE4D6;
+  --color-mark-yellow: #FEF9DD;
+  --color-mark-green: #E2F6EA;
+  --color-mark-blue: #E5F6FE; 
+  --color-mark-violet: #F6F3FD;
+  --color-mark-turquoise: #D7F6F5;
+
+  /* Mark Text Color */
+  --color-mark-text-badge-red: rgba(251, 95, 106, 0.9);
+  --color-mark-text-red: rgba(255, 154, 74, 0.9);
+  --color-mark-text-yellow: rgba(250, 209, 85, 0.9);
+  --color-mark-text-green: rgba(125, 199, 92, 0.9);
+  --color-mark-text-blue: rgba(20, 180, 242, 0.9);
+  --color-mark-text-violet: rgba(157, 98, 218, 0.9);
+  --color-mark-text-turquoise: rgba(82, 209, 190, 0.9);
+
+  /* Mark Text Bg Color */
+  --color-mark-bg-badge-red: rgba(255, 236, 250, 0.8);
+  --color-mark-bg-red: rgba(255, 228, 214, 0.8);
+  --color-mark-bg-yellow: rgba(254, 249, 221, 0.8);
+  --color-mark-bg-green: rgba(226, 246, 234, 0.8);
+  --color-mark-bg-blue: rgba(229, 246, 254, 0.8); 
+  --color-mark-bg-violet: rgba(246, 243, 253, 0.8);
+  --color-mark-bg-turquoise: rgba(229, 246, 254, 0.8);
+
+  /* Pointer Color */
+  --color-draw-red: #EE0000;
+  --color-draw-yellow: #FF9900;
+  --color-draw-green: #32CD32;
+  --color-draw-blue: #0074E5;
+  --color-draw-black: #000000;
+
+  /* Badge Color */
+  --color-badge-yellow: #FFE773;
+  --color-badge-orange: #FF9322;
+  --color-badge-tomato: #FB5F6A;
+  --color-badge-purple: #9D62DA;
+
+  /* Divider */
+  --color-line-divider: #E6E6E6;
 
   /* Typography Variables */
+  --font-heading-05-size: 40px;
+  --font-heading-05-size-rem: 2.5rem;
+  --font-heading-05-weight: 700;
+  --font-heading-05-line-height: 100%;
+  --font-heading-05-letter-spacing: -0.3%;
+
   --font-heading-04-size: 28px;
   --font-heading-04-size-rem: 1.75rem;
   --font-heading-04-weight: 700;
@@ -56,13 +108,13 @@
 
   --font-heading-03-size: 24px;
   --font-heading-03-size-rem: 1.5rem;
-  --font-heading-03-weight: 700;
+  --font-heading-03-weight: 500;
   --font-heading-03-line-height: 140%;
   --font-heading-03-letter-spacing: -0.3%;
 
   --font-heading-02-size: 22px;
   --font-heading-02-size-rem: 1.25rem;
-  --font-heading-02-weight: 700;
+  --font-heading-02-weight: 500;
   --font-heading-02-line-height: 140%;
   --font-heading-02-letter-spacing: -0.3%;
 
@@ -75,7 +127,7 @@
   --font-title-02-b-size: 18px;
   --font-title-02-b-size-rem: 1.125rem;
   --font-title-02-b-weight: 700;
-  --font-title-02-b-line-height: 140%;
+  --font-title-02-b-line-height: 140%; 
   --font-title-02-b-letter-spacing: -0.3%;
 
   --font-title-02-m-size: 18px;
@@ -138,6 +190,12 @@
   --font-caption-02-m-line-height: 150%;
   --font-caption-02-m-letter-spacing: -0.3%;
 
+  --font-caption-02-r-size: 14px;
+  --font-caption-02-r-size-rem: 0.875rem;
+  --font-caption-02-r-weight: 400;
+  --font-caption-02-r-line-height: 100%;
+  --font-caption-02-r-letter-spacing: -0.3%;
+
   --font-caption-01-b-size: 13px;
   --font-caption-01-b-size-rem: 0.75rem;
   --font-caption-01-b-weight: 700;
@@ -162,15 +220,104 @@
   --font-label-01-m-line-height: 150%;
   --font-label-01-m-letter-spacing: -0.3%;
 
+  /* Redesign 추가된 폰트 */
+  --font-title-03-b-size: 24px;
+  --font-title-03-b-size-rem: 1.5rem;
+  --font-title-03-b-weight: 700;
+  --font-title-03-b-line-height: 140%;
+  --font-title-03-b-letter-spacing: -0.3%;
+
+  --font-title-04-b-size: 21px;
+  --font-title-04-b-size-rem: 1.3125rem;
+  --font-title-04-b-weight: 700;
+  --font-title-04-b-line-height: 140%;
+  --font-title-04-b-letter-spacing: -0.3%;
+
+  --font-title-05-b-size: 19px;
+  --font-title-05-b-size-rem: 1.1875rem;
+  --font-title-05-b-weight: 700;
+  --font-title-05-b-line-height: 140%;
+  --font-title-05-b-letter-spacing: -0.3%;
+
+  --font-title-06-b-size: 17px;
+  --font-title-06-b-size-rem: 1.0625rem;
+  --font-title-06-b-weight: 700;
+  --font-title-06-b-line-height: 100%;
+  --font-title-06-b-letter-spacing: -0.3%;
+
+  --font-sub-title-02-size: 14px;
+  --font-sub-title-02-size-rem: 0.875rem;
+  --font-sub-title-02-weight: 500;
+  --font-sub-title-02-line-height: 100%;
+  --font-sub-title-02-letter-spacing: -0.3%;
+
+  --font-sub-title-03-size: 14px;
+  --font-sub-title-03-size-rem: 0.875rem;
+  --font-sub-title-03-weight: 700;
+  --font-sub-title-03-line-height: 100%;
+  --font-sub-title-03-letter-spacing: -0.3%;
+
+  --font-title-00-m-size: 15px;
+  --font-title-00-m-size-rem: 0.9375rem;
+  --font-title-00-m-weight: 500;
+  --font-title-00-m-line-height: 140%;
+  --font-title-00-m-letter-spacing: -0.3%;
+
+  --font-title-00-b-size: 15px;
+  --font-title-00-b-size-rem: 0.9375rem;
+  --font-title-00-b-weight: 700;
+  --font-title-00-b-line-height: 140%;
+  --font-title-00-b-letter-spacing: -0.3%;
+
+  --font-timer-size: 17px;
+  --font-timer-size-rem: 1.0625rem;
+  --font-timer-weight: 500;
+  --font-timer-line-height: 100%;
+  --font-timer-letter-spacing: -0.3%;
+
   /* Border Radius Variables */
-  --radius-1: 0.5rem;    /* 8px */
-  --radius-2: 0.75rem;   /* 12px */
-  --radius-3: 1rem;      /* 16px */
-  --radius-4: 1.25rem;   /* 20px */
-  --radius-5: 1.5rem;    /* 24px */
-  --radius-6: 2.5rem;    /* 40px */
+  --radius-1: 0.25rem;    /* 4px */
+  --radius-2: 0.5rem;   /* 8px */
+  --radius-3: 0.75rem;      /* 12px */
+  --radius-4: 1rem;      /* 16px */
   --radius-circle: 100%; /* 100% to make a perfect circle */
   --radius-pill: 999px; /* pill-shaped */
+
+  /* Dialogs */
+  --dialog-margin: 28px;
+  --dialog-padding: 32px;
+  --alert-padding: 24px;
+
+  /* Dialog Width */
+  --dialog-sm-width: 320px;      /* Alert */
+  --dialog-md-width: 360px;      /* Confirm */
+  --dialog-lg-width: 480px;      /* Default */
+  --dialog-x-lg-width: 720px;    /* Large */
+  --dialog-xx-lg-width: 960px;   /* Extra Large */
+  --dialog-app-width: 986px;    /* App Store */
+
+  /* padding */
+  --layout-padding: 4.167vw; /* 80px */
+  --layout-padding-open: 3.542vw; /* 68px */
+  --header-vertical-padding: 0.5rem; /* 8px */
+  --header-console-vertical-padding: 0.75rem; /* 12px */
+  --snb-info-padding: 1.5rem; /* 24px */
+  --select-padding-right: 2.875rem; /* 46px */
+
+  /* Button Area */
+  --button-gap: 8px; /* 기본 gap 크기 */
+  --button-max-width: 100%; /* 기본 버튼 최대 너비 */
+  --button-justify-content: flex-end; /* 기본 정렬은 좌측 정렬 */
+
+  /*----------------------
+    Login Theme
+  ----------------------*/
+  /* Component Spacing */
+  --login-card-gap: 16px; /* 카드 컴포넌트 사이 간격 */
+ 
+  /* Section Background */
+  --bg-login-content: #F2F5FC; /* 우측 콘텐츠 섹션 배경색 */
+  --bg-login-visual: #A3E1FF;  /* 좌측 비주얼 섹션 배경색 */
 }
 
 /*----------------------

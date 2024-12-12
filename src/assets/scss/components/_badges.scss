@@ -2,57 +2,240 @@
   Badges
 ----------------------*/
 .badge {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0.125rem 0.625rem;
-  @include font-caption-02-b;
-  // line-height: 20px;
-  border: 1px solid transparent;
+  display: inline-block;
+  padding: 0 8px;
+  @include font-caption-02-r;
+  line-height: 30px;
+  color: var(--color-white);
+  background-color: var(--color-badge-orange);
   border-radius: var(--radius-pill);
   white-space: nowrap;
 
-  &.default {
-    color: var(--color-text-01);
-    border-color: var(--color-gray-02);
-    background-color: var(--color-gray-02);
+  &.restrict {
+    background-color: var(--color-badge-purple);
   }
 
-  &.darker {
+  &.focus {
+    background-color: var(--color-badge-tomato);
+  }
+
+  &.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
     color: var(--color-white);
-    border-color: var(--color-gray-09);
-    background-color: var(--color-gray-09);
+    background-color: var(--color-blue-06);
+    @include font-sub-title-01;
+    line-height: 36px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-right: 0.375rem;
+      border-radius: var(--radius-pill);
+      background-color: var(--color-badge-yellow);
+      box-shadow: 0px 2px 2px 0px #0000001A;
+    }
   }
 
-  &.lightest {
-    color: var(--color-text-01);
-    border-color: var(--color-gray-09);
-    background-color: var(--color-gray-01);
-  }
-
-  &.warning {
-    color: var(--color-text-01);
-    background-color: var(--color-yellow);
-  }
-
-  &.error {
+  &.preview {
+    padding: 0 12px;
     color: var(--color-white);
-    background-color: var(--color-red);
+    background-color: var(--color-badge-red);
+    @include font-caption-02-b;
+    line-height: 32px;
   }
-
-  &.success {
+  
+  &.off {
+    padding: 0 12px;
     color: var(--color-white);
-    background-color: green;
+    background-color: var(--color-gray-06);
+    @include font-caption-02-b;
+    line-height: 32px;
   }
 
   &.count {
-    padding: 0 0.25rem;
-    @include font-label-01-m;
-    line-height: 1rem;
+    min-width: 16px;
+    padding: 0 4px;
+    text-align: center;
     color: var(--color-white);
-    background-color: var(--color-red);
+    background-color: var(--color-blue-08);
+    @include font-label-01-m;
+    line-height: 16px;
+  }
+
+  &.unread {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    background-color: var(--color-blue-06);
+    line-height: initial;
+  }
+}
+
+/*----------------------
+  Mark Dot
+----------------------*/
+.mark {
+  display: block;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-03);
+}
+
+.red {
+  background-color: var(--color-mark-red);
+
+  .card-title {
+    color:  var(--color-mark-text-red);
+    background-color: var(--color-mark-bg-red);
+  }
+}
+
+.badge-red {
+  background-color: var(--color-mark-badge-red);
+
+  .card-title {
+    color:  var(--color-mark-text-badge-red);
+    background-color: var(--color-mark-bg-badge-red);
+  }
+}
+
+.yellow {
+  background-color: var(--color-mark-yellow);
+
+  .card-title {
+    color:  var(--color-mark-text-yellow);
+    background-color: var(--color-mark-bg-yellow);
+  }
+}
+
+.green {
+  background-color: var(--color-mark-green);
+
+  .card-title {
+    color:  var(--color-mark-text-green);
+    background-color: var(--color-mark-bg-green);
+  }
+}
+
+.blue {
+  background-color: var(--color-mark-blue);
+
+  .card-title {
+    color:  var(--color-mark-text-blue);
+    background-color: var(--color-mark-bg-blue);
+  }
+}
+
+.turquoise {
+  background-color: var(--color-mark-turquoise);
+
+  .card-title {
+    color:  var(--color-mark-text-turquoise);
+    background-color: var(--color-mark-bg-turquoise);
+  }
+}
+
+.violet {
+  background-color: var(--color-mark-violet);
+
+  .card-title {
+    color:  var(--color-mark-text-violet);
+    background-color: var(--color-mark-bg-violet);
+  }
+}
+
+.table {
+  .mark {
+    width: 44px;
+    height: 44px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &.red {
+      background-image: url('@/assets/images/pic/bg_red.svg');
+    }
+    &.badge-red {
+      background-image: url('@/assets/images/pic/bg_badge-red.svg');
+    }
+    &.yellow {
+      background-image: url('@/assets/images/pic/bg_yellow.svg');
+    }
+    &.green {
+      background-image: url('@/assets/images/pic/bg_green.svg');
+      background-position: 160% -6px;
+    }
+    &.blue {
+      background-image: url('@/assets/images/pic/bg_blue.svg');
+      background-position: right center;
+    }
+    &.turquoise {
+      background-image: url('@/assets/images/pic/bg_turquoise.svg');
+      background-position: right center;
+    }
+    &.violet {
+      background-image: url('@/assets/images/pic/bg_violet.svg');
+    }
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .card-meta {
+    gap: 3px;
+  }
+  .card-item {
+    .badge {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      text-indent: -9999px;
+      background-image: url('@/assets/images/icons/badge_share.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      position: relative;
+      
+      &.restrict {
+        background-image: url('@/assets/images/icons/badge_chat.svg');
+      }
+      
+      &.focus {
+        background-image: url('@/assets/images/icons/badge_smile.svg');
+      }
+
+      &::after {
+        content: attr(data-badge);
+        display: block;
+        padding: 0 4px;
+        font-size: 12px;
+        line-height: 20px;
+        color: var(--color-gray-10);
+        text-indent: 0;
+        background-color: var(--color-gray-03);
+        border-radius: var(--radius-1);
+        position: absolute;
+        bottom: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.2s ease;
+        opacity: 0;
+      }
+
+      &:hover,
+      &:focus {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+    .name {
+      padding-right: 4px;
+    }
   }
 }

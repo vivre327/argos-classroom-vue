@@ -1,0 +1,168 @@
+/*----------------------
+  Skeleton
+----------------------*/
+// 변수
+$skeleton-bg-color: var(--color-gray-03);
+$skeleton-bg-color-light: #eeeeee;
+$skeleton-text-color: var(--color-text-03);
+$skeleton-border-color: var(--color-gray-03);
+$skeleton-card-bg: var(--bg-white);
+
+// 높이 변수
+$skeleton-height-xs: 8px;
+$skeleton-height-sm: 14px;
+$skeleton-height-md: 20px;
+$skeleton-height-lg: 28px;
+$skeleton-height-xl: 36px;
+
+
+// 스켈레톤 공통 스타일
+@mixin skeleton-base {
+  background-color: $skeleton-bg-color;
+  border-radius: var(--radius-pill);
+}
+
+// 애니메이션 믹스인 (필요시 사용)
+@mixin skeleton-animation {
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+  
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, $skeleton-bg-color 4%, $skeleton-bg-color-light 25%, $skeleton-bg-color 36%);
+  background-size: 1000px 100%;
+}
+
+// 기본 스켈레톤 스타일
+.skeleton {
+  @include skeleton-base;
+  
+  // 애니메이션을 추가하려면 아래 줄의 주석을 해제
+  // @include skeleton-animation;
+}
+
+/*----------------------
+  텍스트 스켈레톤 (기본형)
+----------------------*/
+.skeleton-text {
+  @extend .skeleton;
+  min-width: 50px;
+  height: $skeleton-height-sm;
+
+  // 페이지별 Max Width
+  &.item-count {
+    max-width: 260px;
+    height: $skeleton-height-md;
+  }
+
+  &.page-header__title {
+    width: 120px;
+    height: $skeleton-height-lg;
+  }
+}
+
+.page-header__meta {
+  .skeleton-text {
+    width: 240px;
+    height: $skeleton-height-lg;
+  }
+}
+
+/*----------------------
+  테이블 스켈레톤
+----------------------*/
+.skeleton-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  thead th {
+    height: 62px;
+  }
+  
+  &__cell {
+    .skeleton-text {
+      @extend .skeleton;
+      width: 100%;
+      height: $skeleton-height-md;
+    }
+  }
+
+  td .button .more_circle {
+    background-image: url('@/assets/images/icons/more_circle_skeleton.svg');
+  }
+  
+  &__header {
+    height: 24px;
+  }
+  
+  &__row:not(:last-child) {
+    border-bottom: 1px solid $skeleton-border-color;
+  }
+}
+
+/*----------------------
+  콘솔홈 카드 스켈레톤
+----------------------*/
+.skeleton-card {
+  background-color: $skeleton-card-bg;
+  border-radius: var(--radius-4);
+  transition: 0.2s ease;
+}
+
+.skeleton-header {
+  min-height: 52px;
+  gap: 4px;
+  padding: 12px 16px 12px 32px ;
+  border-radius: var(--radius-4) var(--radius-4) 0 0; 
+  @include flex-center;
+
+  .button {
+    .icon-bg {
+      width: 100%;
+      height: 100%;
+    }
+    .more_circle {
+      background-image: url('@/assets/images/icons/more_circle_skeleton.svg');
+    }
+  }
+}
+
+.skeleton-title {
+  flex: 1;
+  
+  &::before {
+    content: "";
+    @extend .skeleton;
+    display: block;
+    max-width: 50%;
+    height: 14px;
+  }
+}
+
+.skeleton-body {
+  min-height: 216px;
+  padding: 20px 32px;
+  border: 1px solid var(--color-gray-03);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-4) var(--radius-4); 
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: repeat(6, minmax(20px, auto));
+  row-gap: 8px;
+
+  p {
+    @extend .skeleton;
+    max-height: 14px;
+    text-align: left;
+    color: var(--color-text-03);
+  }
+
+  p:nth-child(even) {
+    max-width: 70%;
+  }
+  
+  p:nth-child(odd) {
+    max-width: 100%;
+  }
+}

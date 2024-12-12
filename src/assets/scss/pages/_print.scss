@@ -1,0 +1,22 @@
+@media print {
+  //프린트 화면 UI 변경 필요한지 확인
+    
+  .code-blue { //프린트시 background-color 안나오는 현상 수정
+    background-color: var(--color-blue-01) !important; 
+    -webkit-print-color-adjust:exact;
+  }
+
+  .button {
+    visibility: hidden;
+  }
+
+  .code-content h3,
+  .modal-header h5 {
+    visibility: hidden !important;
+  }
+
+  .body-02-m {
+    visibility: hidden;
+  }
+
+}

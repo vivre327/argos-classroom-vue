@@ -28,17 +28,29 @@
 // flex-start: 아이템들이 컨테이너의 시작점에 정렬
 @mixin flex-start($direction: row) {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: $direction;
+
+  @if $direction == row {
+    justify-content: flex-start; // 가로축 시작점에 정렬
+    align-items: center;         // 세로축 가운데 정렬
+  } @else if $direction == column {
+    justify-content: flex-start; // 세로축 시작점에 정렬
+    align-items: flex-start;     // 가로축 시작점에 정렬
+  }
 }
 
 // flex-end: 아이템들이 컨테이너의 끝점에 정렬
 @mixin flex-end($direction: row) {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
   flex-direction: $direction;
+
+  @if $direction == row {
+    justify-content: flex-end;   // 가로축 끝점에 정렬
+    align-items: center;         // 세로축 가운데 정렬
+  } @else if $direction == column {
+    justify-content: flex-end;   // 세로축 끝점에 정렬
+    align-items: flex-end;       // 가로축 끝점에 정렬
+  }
 }
 
 // flex-wrap: 아이템들이 컨테이너의 너비를 초과할 경우 다음 줄로 이동하며 래핑
@@ -96,8 +108,14 @@
   letter-spacing: $letter-spacing;
 }
 
-// 20040901 추가
 /* Typography Mixins */
+@mixin font-heading-05 {
+  font-size: var(--font-heading-05-size);
+  font-weight: var(--font-heading-05-weight);
+  line-height: var(--font-heading-05-line-height);
+  letter-spacing: var(--font-heading-05-letter-spacing);
+}
+
 @mixin font-heading-04 {
   font-size: var(--font-heading-04-size);
   font-weight: var(--font-heading-04-weight);
@@ -203,6 +221,13 @@
   letter-spacing: var(--font-caption-02-m-letter-spacing);
 }
 
+@mixin font-caption-02-r {
+  font-size: var(--font-caption-02-r-size);
+  font-weight: var(--font-caption-02-r-weight);
+  line-height: var(--font-caption-02-r-line-height);
+  letter-spacing: var(--font-caption-02-r-letter-spacing);
+}
+
 @mixin font-caption-01-b {
   font-size: var(--font-caption-01-b-size);
   font-weight: var(--font-caption-01-b-weight);
@@ -231,12 +256,76 @@
   letter-spacing: var(--font-label-01-m-letter-spacing);
 }
 
+@mixin font-title-03-b {
+  font-size: var(--font-title-03-b-size);
+  font-weight: var(--font-title-03-b-weight);
+  line-height: var(--font-title-03-b-line-height);
+  letter-spacing: var(--font-title-03-b-letter-spacing);
+}
+
+@mixin font-title-04-b {
+  font-size: var(--font-title-04-b-size);
+  font-weight: var(--font-title-04-b-weight);
+  line-height: var(--font-title-04-b-line-height);
+  letter-spacing: var(--font-title-04-b-letter-spacing);
+}
+
+@mixin font-title-05-b {
+  font-size: var(--font-title-05-b-size);
+  font-weight: var(--font-title-05-b-weight);
+  line-height: var(--font-title-05-b-line-height);
+  letter-spacing: var(--font-title-05-b-letter-spacing);
+}
+
+@mixin font-title-06-b {
+  font-size: var(--font-title-06-b-size);
+  font-weight: var(--font-title-06-b-weight);
+  line-height: var(--font-title-06-b-line-height);
+  letter-spacing: var(--font-title-06-b-letter-spacing);
+}
+
+@mixin font-sub-title-02 {
+  font-size: var(--font-sub-title-02-size);
+  font-weight: var(--font-sub-title-02-weight);
+  line-height: var(--font-sub-title-02-line-height);
+  letter-spacing: var(--font-sub-title-02-letter-spacing);
+}
+
+@mixin font-sub-title-03 {
+  font-size: var(--font-sub-title-03-size);
+  font-weight: var(--font-sub-title-03-weight);
+  line-height: var(--font-sub-title-03-line-height);
+  letter-spacing: var(--font-sub-title-03-letter-spacing);
+}
+
+@mixin font-title-00-m {
+  font-size: var(--font-title-00-m-size);
+  font-weight: var(--font-title-00-m-weight);
+  line-height: var(--font-title-00-m-line-height);
+  letter-spacing: var(--font-title-00-m-letter-spacing);
+}
+
+@mixin font-title-00-b {
+  font-size: var(--font-title-00-b-size);
+  font-weight: var(--font-title-00-b-weight);
+  line-height: var(--font-title-00-b-line-height);
+  letter-spacing: var(--font-title-00-b-letter-spacing);
+}
+
+@mixin font-timer {
+  font-size: var(--font-timer-size);
+  font-weight: var(--font-timer-weight);
+  line-height: var(--font-timer-line-height);
+  letter-spacing: var(--font-timer-letter-spacing);
+}
+
 
 // Text Truncate 믹스인
 // 기본 단일 라인 트렁케이트 mixin
 @mixin truncate($width) {
   display: block;
   max-width: $width;
+  width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -246,6 +335,7 @@
 @mixin text-truncate($lines: 1) {
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-all;
   display: -webkit-box;
   -webkit-line-clamp: $lines;
   -webkit-box-orient: vertical;
@@ -270,12 +360,11 @@
 }
 
 // Button Size 믹스인
-@mixin button-size($padding, $font-size, $border-radius) {
+@mixin button-size($padding, $border-radius) {
   padding: $padding;
-  font-size: $font-size;
   border-radius: $border-radius;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  // transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 // Link Style 믹스인

@@ -7,12 +7,6 @@
 @import 'base/_typography';
 @import 'base/_base';
 
-// Layout
-@import 'layout/_grid';
-@import 'layout/_header';
-@import 'layout/_footer';
-@import 'layout/_sidebar';
-
 // Components
 @import 'components/_buttons';
 @import 'components/_cards';
@@ -22,13 +16,31 @@
 @import 'components/_toasts';
 @import 'components/_badges';
 @import 'components/_chat';
+@import 'components/_tables';
+@import 'components/_dialogs';
+@import 'components/_contexts';
 @import 'components/_animations';
+@import 'components/_loading';
+@import 'components/_code';
+
+// Layout
+@import 'layout/_grid';
+@import 'layout/_header';
+@import 'layout/_footer';
+@import 'layout/_sidebar';
 
 // Pages
+@import 'pages/_login';
 @import 'pages/_home';
-@import 'pages/_classroom';
+@import 'pages/_class';
+@import 'pages/_main';
 @import 'pages/_styleguide';
 @import 'pages/_error';
+@import 'pages/_skeleton';
 
 // utilities
 @import 'utilities/_utilities';
+@import 'pages/_print';
+
+// responsive-below-1280
+@import 'base/_responsive';

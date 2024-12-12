@@ -1,0 +1,192 @@
+/*----------------------
+  Login
+----------------------*/
+.login {
+  display: flex;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  text-align: center;
+
+  /* Login Container */
+  .login-container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: var(--login-card-gap);
+    min-height: 768px;
+    padding: 3px 0 calc(68px + var(--login-card-gap));
+    background: var(--bg-login-content) url("@/assets/images/pic/bg_login_visual.png") center/contain no-repeat;
+    position: relative;
+  }
+
+  /* login-content */
+  &-content {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    height: 100%;
+  }
+
+  /* login-title */
+  &-title {
+    margin-bottom: 32px;
+    text-align: center;
+    color: var(--color-text-01);
+    @include font-heading-01;
+  }
+}
+
+/*----------------------
+  Visual
+----------------------*/
+.visual-logo {
+  width: 328px;
+  height: auto;
+
+  /* 1366px */
+  @media screen and (max-width: 1366px) and (max-height: 768px) {
+    width: 20vw;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.tagline {
+  display: block;
+  width: 309px;
+  margin: 0;
+  padding-bottom: 20px;
+
+  /* 1366px */
+  @media screen and (max-width: 1366px) and (max-height: 768px) {
+    width: 19vw;
+    padding-bottom: 10px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/*----------------------
+  Login Card
+----------------------*/
+.login-card {
+  width: 424px;
+  padding: 16px;
+  border-radius: var(--radius-4);
+  background-color: var(--bg-white);
+  box-shadow: 4px 4px 20px 0px #0000000D;
+}
+
+/*----------------------
+  Login Form
+----------------------*/
+.login-form {
+  padding: 40px;
+  text-align: left;
+
+  .form-element {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-element + .form-element {
+    margin-top: 20px;
+  }
+
+  /* 로그인 유지 체크박스 */
+  .checkbox {
+    .checkbox__label {
+      display: inline-flex;
+      align-items: center;
+    }
+    .checkbox_faux {
+      width: 20px;
+      height: 20px;
+    }
+    .form-element__label {
+      @include font-body-01-m;
+      line-height: 26px;
+    }
+  }
+
+  /* login button */
+  .button {
+    margin-top: 32px;
+  }
+
+  /* login validation */
+  .is-error {
+    .form-feedback {
+      margin-top: 20px;
+      @include font-caption-02-m;
+      
+      &:empty {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+/*----------------------
+  Login Links
+----------------------*/
+.login-links {
+  margin-top: 32px;
+  @include flex-center($direction: row);
+
+  .button_text {
+    min-width: initial;
+    margin-top: 0;
+    padding: 0 10px;
+    @include font-body-02-m;
+  }
+
+  li:first-child {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 10px;
+      background-color: var(--color-gray-03);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+/*----------------------
+  Policy Links
+----------------------*/
+.policy-links {
+  gap: 20px;
+  @include flex-center($direction: row);
+
+  .button_text {
+    text-decoration: none;
+    @include font-caption-01-m;
+  }
+
+  .policy {
+    font-weight: var(--font-caption-01-b-weight);
+  }
+}

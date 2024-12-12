@@ -12,83 +12,191 @@
   justify-content: center;
   font-weight: 500;
   line-height: 150%;
-  // 사이즈
-  @include button-size(0.4375rem 1.25rem, 1rem, 0.5rem); // padding, font, border-radius
-  // 스타일
-  @include button-style (transparent, transparent, currentColor, transparent, transparent, var(--color-blue-06));
   cursor: pointer;
   text-align: center;
-  -webkit-appearance: none;  // 기본 스타일 제거
-  white-space: normal;        // 기본 텍스트 흐름 유지
-  -webkit-user-select: none;  // 웹킷 브라우저에서 텍스트 선택 비활성화
-  -moz-user-select: none;     // Firefox 브라우저에서 텍스트 선택 비활성화
-  -ms-user-select: none;      // Internet Explorer/Edge에서 텍스트 선택 비활성화
-  user-select: none;          // 표준 브라우저에서 텍스트 선택 비활성화
+  -webkit-appearance: none; // 기본 스타일 제거
+  white-space: normal; // 기본 텍스트 흐름 유지
+  -webkit-user-select: none; // 웹킷 브라우저에서 텍스트 선택 비활성화
+  -moz-user-select: none; // Firefox 브라우저에서 텍스트 선택 비활성화
+  -ms-user-select: none; // Internet Explorer/Edge에서 텍스트 선택 비활성화
+  user-select: none; // 표준 브라우저에서 텍스트 선택 비활성화
   text-decoration: none;
   // transition 시작
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  // transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+  background-position: center;
+  transition: background 0.3s ease;
+
+  // 사이즈
+  @include font-body-01-b;
+  padding: 0 19px;
+  line-height: 38px;
+  border-radius: var(--radius-2);
+  @include button-style(transparent, transparent, currentColor, transparent, transparent, var(--color-blue-06));
 
   // button sizing
   &_small {
-    min-width: 180px;
-    @include button-size(0.375rem 1rem, 0.8125rem, 0.5rem); // ($padding, $font-size, $border-radius) 
+    // min-width: 180px;
+    @include font-caption-01-b;
+    padding: 0 15px;
+    line-height: 30px;
   }
 
   &_large {
-    min-width: 180px;
-    @include button-size(0.6875rem 1.5rem, 1rem, 0.5rem);
+    // min-width: 180px;
+    @include font-body-02-b;
+    padding: 0 23px;
+    line-height: 46px;
   }
 
   &_x-large {
-    min-width: 180px;
-    @include button-size(1.25rem 1.5rem, 1rem, 0.5rem);
+    // min-width: 180px;
+    @include font-body-02-b;
+    padding: 0 23px;
+    line-height: 54px;
+
+    .icon_left {
+      margin-right: 0.375rem;
+    }
+    .icon_right {
+      margin-left: 0.375rem;
+    }
+  }
+
+  &_stretch {
+    width: 100%;
+  }
+
+  &_text {
+    @include font-body-02-m;
+    padding: 0;
+    line-height: 24px;
+    color: var(--color-text-04);
+  }
+
+  &_underline {
+    @include font-caption-02-b;
+    height: 21px;
+    line-height: 21px;
+    border-radius: 0;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      transform: scaleY(150%);
+      background-color: currentColor;
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      right: 0;
+    }
   }
 
   // button variations
   &_primary {
     font-weight: 700;
-    @include button-style (var(--color-blue-06), transparent, var(--color-white), var(--color-blue-08), transparent , var(--color-white));
+    @include button-style(var(--color-blue-06), transparent, var(--color-white), var(--color-blue-08), transparent, var(--color-white));
   }
 
   &_secondary {
     font-weight: 700;
-    @include button-style (var(--color-blue-04), transparent, var(--color-white), var(--color-blue-08), transparent , var(--color-white));
+    @include button-style(var(--color-blue-04), transparent, var(--color-white), var(--color-blue-08), transparent, var(--color-white));
+  }
+
+  &_tertiary {
+    font-weight: 700;
+    @include button-style(var(--color-blue-09), transparent, var(--color-white), var(--color-blue-08), transparent, var(--color-white));
+  }
+
+  &_dark {
+    font-weight: 700;
+    @include button-style(#333, transparent, var(--color-white), #292929, transparent, var(--color-white));
   }
 
   &_destructive {
-    @include button-style (var(--color-red), transparent, var(--color-white), var(--color-red), transparent , var(--color-white));
+    @include button-style(var(--color-red), transparent, var(--color-white), var(--color-red), transparent, var(--color-white));
   }
 
   // Outline Buttons
   &_outline {
     font-weight: 700;
-    @include button-style (transparent, var(--color-gray-04), var(--color-gray-07), transparent, var(--color-blue-08), var(--color-blue-08));
-
+    transition: 0.2s ease;
+    @include button-style(transparent, var(--color-gray-04), var(--color-gray-07), transparent, var(--color-blue-08), var(--color-blue-08));
 
     &-primary {
       font-weight: 700;
-      @include button-style (var(--color-white), var(--color-blue-06), var(--color-blue-06), var(--color-white), var(--color-blue-08) , var(--color-blue-08));
+      @include button-style(
+        var(--color-white),
+        var(--color-blue-06),
+        var(--color-blue-06),
+        var(--color-white),
+        var(--color-blue-08),
+        var(--color-blue-08)
+      );
     }
 
     &-secondary {
       font-weight: 700;
-      @include button-style (var(--color-white), var(--color-blue-04), var(--color-blue-04), var(--color-white), var(--color-blue-08) , var(--color-blue-08));
+      @include button-style(var(--color-white), var(--color-gray-04), var(--color-text-04), #E6E6E6, var(--color-gray-04), var(--color-text-04));
     }
   }
 
+  /*----------------------
+    Disabled
+  ----------------------*/
   &:disabled,
   &[disabled] {
-    background-color: transparent;
     border-color: transparent;
-    color: var(--color-gray-05);
-    // cursor: not-allowed;
+    color: var(--color-text-05-disabled);
+    background-color: var(--color-gray-03);
     cursor: default;
+  }
+
+  // outline
+  &[class*="outline"] {
+    &:disabled,
+    &[disabled] {
+      color: var(--color-text-04);
+      border-color: var(--color-gray-04);
+      background-color: transparent;
+    }
+  }
+
+  // text
+  &[class*="text"] {
+    &:disabled,
+    &[disabled] {
+      color: var(--color-text-04);
+      background-color: transparent;
+    }
+  }
+
+  // Button with icon
+  &[class*="icon"] {
+    &:disabled,
+    &[disabled] {
+      color: var(--color-text-04);
+      background-color: transparent;
+    }
+  }
+
+  &.active {
+    color: var(--color-blue-06);
+  }
+
+  &.active::after {
+    color: var(--color-blue-06);
   }
 
   /*----------------------
     Icon Buttons
   ----------------------*/
   &_icon {
+    /* 24px */
+    width: 1.5rem;
+    height: 1.5rem;
     padding: 0;
     line-height: 1;
     vertical-align: middle;
@@ -97,6 +205,8 @@
     justify-content: center;
     -ms-flex-negative: 0;
     flex-shrink: 0;
+    border: 0;
+    border-radius: 0;
 
     // 아이콘 테두리
     &-border {
@@ -104,9 +214,9 @@
       height: 2.5rem;
       line-height: 1;
       vertical-align: middle;
-      -webkit-transition: border .15s linear;
-      transition: border .15s linear;
-      // border: 1px solid currentColor;
+      -webkit-transition: border 0.15s linear;
+      transition: border 0.15s linear;
+      border: 1px solid currentColor;
       border-radius: 999px;
       .button__icon {
         width: 1.25rem;
@@ -114,146 +224,328 @@
       }
     }
 
+    // button with icon
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
     // 아이콘 버튼의 사이즈
-    &-xx-small {
+    &-x-small {
       // 16px
       width: 1rem;
       height: 1rem;
     }
-    &-x-small {
+    &-small {
       // 20px
       width: 1.25rem;
       height: 1.25rem;
     }
-    &-small {
-      // 24px
-      width: 1.5rem;
-      height: 1.5rem;
-    }
     &-large {
+      // 32px
+      width: 2rem;
+      height: 2rem;
+    }
+    &-x-large {
       // 40px
       width: 2.5rem;
       height: 2.5rem;
     }
   }
 
-
   &__icon {
     // 32px
-    width: 2rem;
-    height: 2rem;
-  }
-
-  // button with icon
-  .icon {
-    width: 1rem;
-    height: 1rem;
+    flex: 1;
+    width: 100%;
+    height: 100%;
   }
 
   /*----------------------
     Button toolbar
   ----------------------*/
   &_tool {
+    width: auto;
+    height: auto;
     flex-direction: column;
     gap: 4px;
     color: var(--color-gray-07);
+
+    .icon-bg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
   .icon-bg {
     display: block;
-    width: 1.5rem;
-    height: 1.5rem;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    transition: 0.3s ease;
+    background-size: cover;
+    transition: 0.2s ease;
 
     &.myshare {
-      background-image: url('../images/icons/myshare_off.svg');
+      background-image: url("@/assets/images/icons/myshare_off.svg");
     }
 
     &.mobile {
-      background-image: url('../images/icons/mobile_off.svg');
-    }
-    
-    &.link {
-      background-image: url('../images/icons/link_off.svg');
-    }
-    
-    &.file {
-      background-image: url('../images/icons/file_off.svg');
-    }
-    
-    &.lock {
-      background-image: url('../images/icons/lock_off.svg');
-    }
-    
-    &.user_edit {
-      background-image: url('../images/icons/user_edit_off.svg');
-    }
-    
-    &.pin {
-      background-image: url('../images/icons/pin_off.svg');
-    }
-    
-    &.message {
-      background-image: url('../images/icons/message_off.svg');
-    }
-    
-    &.maximize {
-      background-image: url('../images/icons/maximize_off.svg');
+      background-image: url("@/assets/images/icons/mobile_off.svg");
     }
 
+    &.link {
+      background-image: url("@/assets/images/icons/link_off.svg");
+    }
+
+    &.file {
+      background-image: url("@/assets/images/icons/file_off.svg");
+    }
+
+    &.lock {
+      background-image: url("@/assets/images/icons/lock_off.svg");
+    }
+
+    &.user_edit {
+      background-image: url("@/assets/images/icons/user_edit_off.svg");
+    }
+
+    &.pin {
+      background-image: url("@/assets/images/icons/pin_off.svg");
+    }
+
+    &.message {
+      background-image: url("@/assets/images/icons/message_off.svg");
+    }
+
+    &.maximize {
+      background-image: url("@/assets/images/icons/maximize_off.svg");
+    }
+
+    &.student {
+      background-image: url("@/assets/images/icons/student_off.svg");
+    }
   }
 
-  &:hover,
-  &:focus {
+  &.active {
     .btn-text {
-      color: var(--color-blue-06);
+      font-weight: var(--font-body-01-b-weight);
     }
+  }
 
-    .myshare {
-      background-image: url('../images/icons/myshare_on.svg');
-    }
-
-    .mobile {
-      background-image: url('../images/icons/mobile_on.svg');
-    }
+  &:not(.disabled):not(:disabled):not([disabled]) {
+    &:hover,
+    &:focus,
+    &.active {
+      .btn-text {
+        color: var(--color-blue-06);
+      }
   
-    .link {
-      background-image: url('../images/icons/link_on.svg');
-    }
+      .myshare {
+        background-image: url("@/assets/images/icons/myshare_on.svg");
+      }
   
-    .file {
-      background-image: url('../images/icons/file_on.svg');
-    }
+      .mobile {
+        background-image: url("@/assets/images/icons/mobile_on.svg");
+      }
   
-    .lock {
-      background-image: url('../images/icons/lock_on.svg');
-    }
+      .link {
+        background-image: url("@/assets/images/icons/link_on.svg");
+      }
   
-    .user_edit {
-      background-image: url('../images/icons/user_edit_on.svg');
-    }
+      .file {
+        background-image: url("@/assets/images/icons/file_on.svg");
+      }
   
-    .pin {
-      background-image: url('../images/icons/pin_on.svg');
-    }
+      .lock {
+        background-image: url("@/assets/images/icons/lock_on.svg");
+      }
   
-    .message {
-      background-image: url('../images/icons/message_on.svg');
-    }
+      .user_edit {
+        background-image: url("@/assets/images/icons/user_edit_on.svg");
+      }
   
-    .maximize {
-      background-image: url('../images/icons/maximize_on.svg');
+      .pin {
+        background-image: url("@/assets/images/icons/pin_on.svg");
+      }
+  
+      .message {
+        background-image: url("@/assets/images/icons/message_on.svg");
+      }
+  
+      .maximize {
+        background-image: url("@/assets/images/icons/maximize_on.svg");
+      }
+  
+      .student {
+        background-image: url("@/assets/images/icons/student_on.svg");
+      }
     }
   }
 }
 
+/* Button Tool Group */
+.tool-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  margin-right: -24px;
+  position: relative;
+
+  .button_dropdown {
+    width: 24px;
+    height: 51px;
+    color: var(--color-gray-07);
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    background-image: url("@/assets/images/icons/tool_arrow.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.disabled,
+    &:disabled,
+    &[disabled] {
+      opacity: 0.5;
+      background-color: #dedede;
+    }
+
+    &:not(.disabled):not(:disabled):not([disabled]) {
+      &:hover,
+      &.active {
+        background-color: var(--color-gray-04);
+        background-color: #dbdee2;
+      }
+  
+      &.active {
+        rotate: 180deg;
+      }
+    }
+  }
+
+  .context {
+    border: 0;
+    box-shadow: 2px 2px 10px 0px #00000026;
+    left: 0;
+    top: initial;
+    bottom: 78px;
+
+    .context-list {
+      padding: 12px;
+      li {
+        display: flex;
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+      span {
+        display: inline-flex;
+        align-items: center;
+        min-width: 165px;
+        padding: 0;
+        color: var(--color-text-03);
+        line-height: 1;
+        border-radius: var(--radius-2);
+        transition: 0.2s ease;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 32px;
+          height: 36px;
+          background-image: url("@/assets/images/icons/tool_check.svg");
+          background-position: center;
+          background-repeat: no-repeat;
+          opacity: 0;
+        }
+        &:hover,
+        &.selected {
+          font-weight: 500;
+        }
+        &:not(.disabled):not(:disabled):not([disabled]) {
+          &:hover,
+          &.selected {
+            background-color: #dbdee2;
+          }
+        }
+        &.disabled,
+        &:disabled,
+        &[disabled] {
+          opacity: 0.6;
+          cursor: default;
+        }
+        &.selected {
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  /* tool group icon */
+  i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .tool-lock {
+    background-image: url("@/assets/images/icons/tool_lock.svg");
+
+    &_off {
+      background-image: url("@/assets/images/icons/tool_lock_off.svg");
+    }
+  }
+
+  .tool-pin {
+    background-image: url("@/assets/images/icons/tool_pin.svg");
+
+    &_off {
+      background-image: url("@/assets/images/icons/tool_pin_off.svg");
+    }
+  }
+
+  .tool-app {
+    background-image: url("@/assets/images/icons/tool_app.svg");
+
+    &_close {
+      background-image: url("@/assets/images/icons/tool_app_off.svg");
+    }
+  }
+}
+
+.snb.lg ~ .main-content .button_tool {
+  &:first-of-type {
+    padding-right: 0;
+
+    &::after {
+      content: none;
+    }
+  }
+}
+
+.toolbar button {
+  &.disabled,
+  &:disabled,
+  &[disabled] {
+    
+    .btn-text {
+      color: var(--color-text-05-disabled);
+    }
+    .icon-bg {
+      opacity: 0.7;
+    }
+  }
+}
 .btn-text {
   @include font-body-01-m;
   color: var(--color-text-03);
   transition: 0.15s ease;
+}
+
+.single {
+  min-width: 160px;
 }
 
 /*----------------------
@@ -261,4 +553,47 @@
 ----------------------*/
 .btn-group {
   display: inline-flex;
+}
+.btn-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* 공통 그리드 속성 정의 */
+.btn-area {
+  display: flex;
+  gap: var(--button-gap);
+  justify-content: var(--button-justify-content);
+  flex-wrap: wrap;
+
+  &.stretch {
+    justify-content: space-between;
+    .button {
+      flex: 1;
+    }
+  }
+
+  /* 좌측 정렬 */
+  &.left {
+    --button-justify-content: flex-start;
+  }
+
+  /* 우측 정렬 */
+  &.right {
+    --button-justify-content: flex-end;
+  }
+  /* 가운데 정렬 */
+  &.center {
+    --button-justify-content: center;
+  }
+
+  /* 갭을 8px로 설정 */
+  &.gap-8 {
+    --button-gap: 8px;
+  }
+
+  /* 갭을 16px로 설정 */
+  &.gap-16 {
+    --button-gap: 16px;
+  }
 }
