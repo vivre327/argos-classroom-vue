@@ -1938,12 +1938,20 @@
           <div class="code-block">
             <div class="action-bar"><button class="copy-button" @click="copyToClipboardPub($event)">Copy</button></div>
             <pre><code ref="code" class="language-html">
-&lt;div class=&quot;form-element&quot;&gt;
-  &lt;label class=&quot;form-element__label&quot; for=&quot;text-input-id-0&quot;&gt;Input Label&lt;/label&gt;
-  &lt;div class=&quot;form-element__control&quot;&gt;
-    &lt;input id=&quot;text-input-id-0&quot; placeholder=&quot;Placeholder text…&quot; type=&quot;text&quot; class=&quot;input&quot; value=&quot;&quot;&gt;
+&lt;div class="form-element"&gt;
+  &lt;label class="form-element__label" for="select-01"&gt;Select Label&lt;/label&gt;
+  &lt;div class="select_container"&gt;
+    &lt;select class="select" id="select-01"&gt;
+      &lt;option value=""&gt;Select…&lt;/option&gt;
+      &lt;option value="option1"&gt;Option One&lt;/option&gt;
+      &lt;option value="option2"&gt;Option Two&lt;/option&gt;
+      &lt;option value="option3"&gt;Option &lt;/option&gt;
+    &lt;/select&gt;
+    &lt;svg class="icon"&gt;
+      &lt;use xlink:href="@/assets/images/icons/symbols.svg#arrow_down"&gt;&lt;/use&gt;
+    &lt;/svg&gt;
   &lt;/div&gt;
-&lt;/div&gt;              
+&lt;/div&gt;            
               </code></pre>
           </div>
 
